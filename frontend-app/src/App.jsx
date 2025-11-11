@@ -27,7 +27,6 @@ function App() {
       setRecommendations(data.recommendations || []);
       setJourney(data.journey || null);
       setMetadata(data.metadata || null);
-      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       console.error(err);
       const message =
