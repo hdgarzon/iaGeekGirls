@@ -107,7 +107,7 @@ app.post("/api/match", async (req, res) => {
 
 app.post("/api/pdf", (req, res) => {
   try {
-    const { profileId, profile: profilePayload, matches = [] } = req.body;
+    const { profileId, profile: profilePayload, matches = [], journey } = req.body;
     const profile = profilePayload || getProfile(profileId);
 
     if (!profile) {
@@ -246,6 +246,80 @@ app.post("/api/pdf", (req, res) => {
           doc.moveDown(0.4);
         }
       });
+    }
+
+    // Add Journey section if available
+    if (journey) {
+      doc.addPage();
+      doc.fillColor(primaryColor).fontSize(16).text("Journey Profesional", {
+        underline: true
+      });
+      doc.moveDown(0.5);
+
+      // Current Assessment
+      doc.fillColor(primaryColor).fontSize(14).text("📊 Evaluación Actual", {
+        underline: true
+      });
+      doc.moveDown(0.3);
+
+      doc.fillColor("#000").fontSize(11);
+      doc.text(`Nivel profesional: ${journey.currentAssessment.careerLevel || 'No evaluado'}`);
+
+      if (journey.currentAssessment.strengths?.length) {
+        doc.moveDown(0.3);
+        doc.fillColor("#000").text("💪 Fortalezas:");
+        journey.currentAssessment.strengths.forEach(strength => {
+          doc.text(`• ${strength}`);
+        });
+      }
+
+      if (journey.currentAssessment.areasForImprovement?.length) {
+        doc.moveDown(0.3);
+        doc.fillColor("#000").text("🎯 Áreas de mejora:");
+        journey.currentAssessment.areasForImprovement.forEach(area => {
+          doc.text(`• ${area}`);
+        });
+      }
+
+      // Journey Phases
+      journey.phases?.forEach((phase, index) => {
+        doc.moveDown(0.8);
+        doc.fillColor(primaryColor).fontSize(14).text(`${index + 1}. ${phase.name} (${phase.duration})`, {
+          underline: true
+        });
+        doc.moveDown(0.3);
+
+        doc.fillColor("#000").fontSize(11);
+
+        if (phase.goals?.length) {
+          doc.text("🎯 Objetivos:");
+          phase.goals.forEach(goal => {
+            doc.text(`• ${goal}`);
+          });
+          doc.moveDown(0.2);
+        }
+
+        if (phase.actions?.length) {
+          doc.text("🚀 Acciones:");
+          phase.actions.forEach(action => {
+            doc.text(`• ${action}`);
+          });
+          doc.moveDown(0.2);
+        }
+
+        if (phase.resources?.length) {
+          doc.text("📚 Recursos:");
+          phase.resources.forEach(resource => {
+            doc.text(`• ${resource}`);
+          });
+        }
+      });
+
+      doc.moveDown(0.8);
+      doc.fillColor("#666").fontSize(10).text(
+        "💡 Este journey es una guía flexible. Adáptalo a tu ritmo y circunstancias personales.",
+        { align: "center" }
+      );
     }
 
     doc.moveDown(1);

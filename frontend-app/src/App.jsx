@@ -44,7 +44,7 @@ function App() {
 
     try {
       setPdfLoading(true);
-      const blob = await downloadMatchPdf({ profile, matches });
+      const blob = await downloadMatchPdf({ profile, matches, journey });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;

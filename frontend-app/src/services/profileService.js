@@ -16,11 +16,12 @@ export async function generateMatchRequest({ profileId, profile, persist }) {
   return data;
 }
 
-export async function downloadMatchPdf({ profile, matches }) {
+export async function downloadMatchPdf({ profile, matches, journey }) {
   const payload = {
     profileId: profile?.id,
     profile,
-    matches
+    matches,
+    journey
   };
 
   const { data } = await apiClient.post("/api/pdf", payload, {
