@@ -291,80 +291,10 @@ app.post("/api/pdf", (req, res) => {
       });
     }
 
-    doc.addPage();
-    doc.fillColor(primaryColor).fontSize(16).text("Journey de Aprendizaje", {
-      underline: true
-    });
-    doc.moveDown(0.5);
-
-    // Journey Assessment
-    if (profile.journey?.currentAssessment) {
-      doc.fillColor("#000").fontSize(14).text("Evaluación Actual", { underline: true });
-      doc.moveDown(0.3);
-
-      if (profile.journey.currentAssessment.strengths?.length) {
-        doc.fillColor("#000").fontSize(11).text("💪 Fortalezas:");
-        profile.journey.currentAssessment.strengths.forEach(strength => {
-          doc.text(`• ${strength}`);
-        });
-        doc.moveDown(0.3);
-      }
-
-      if (profile.journey.currentAssessment.areasForImprovement?.length) {
-        doc.fillColor("#000").fontSize(11).text("🎯 Áreas de mejora:");
-        profile.journey.currentAssessment.areasForImprovement.forEach(area => {
-          doc.text(`• ${area}`);
-        });
-        doc.moveDown(0.3);
-      }
-
-      if (profile.journey.currentAssessment.learningLevel) {
-        doc.fillColor("#000").fontSize(11).text(`📚 Nivel de aprendizaje: ${profile.journey.currentAssessment.learningLevel}`);
-        doc.moveDown(0.5);
-      }
-    }
-
-    // Journey Phases
-    if (profile.journey?.phases) {
-      profile.journey.phases.forEach((phase, index) => {
-        doc.fillColor(primaryColor).fontSize(12).text(`${index + 1}. ${phase.name}`, { underline: true });
-        doc.moveDown(0.2);
-
-        if (phase.goals?.length) {
-          doc.fillColor("#000").fontSize(10).text("🎯 Objetivos:");
-          phase.goals.forEach(goal => {
-            doc.text(`• ${goal}`);
-          });
-          doc.moveDown(0.2);
-        }
-
-        if (phase.actions?.length) {
-          doc.fillColor("#000").fontSize(10).text("🚀 Acciones:");
-          phase.actions.forEach(action => {
-            doc.text(`• ${action}`);
-          });
-          doc.moveDown(0.2);
-        }
-
-        if (phase.resources?.length) {
-          doc.fillColor("#000").fontSize(10).text("📚 Recursos:");
-          phase.resources.forEach(resource => {
-            doc.text(`• ${resource}`);
-          });
-          doc.moveDown(0.3);
-        }
-      });
-    }
-
-    doc.moveDown(0.5);
-    doc.fillColor("#666").fontSize(10).text(
-      "💡 Este journey es una guía flexible. Adáptalo a tu ritmo y circunstancias personales. El aprendizaje STEM es un viaje continuo."
-    );
-
-    // Add Journey section if available
+    // Add Journey section (Recomendaciones IA)
     if (journey) {
       doc.addPage();
-      doc.fillColor(primaryColor).fontSize(16).text("Journey Profesional", {
+      doc.fillColor(primaryColor).fontSize(16).text("Recomendaciones IA", {
         underline: true
       });
       doc.moveDown(0.5);
