@@ -8,7 +8,7 @@ const {
   getProfile,
   listProfiles
 } = require("./services/profileRepository");
-const { rankRolesForProfile } = require("./services/matchService");
+const { rankRolesForProfile, generateCareerJourney } = require("./services/matchService");
 const { fetchExternalJobs } = require("./services/externalJobsService");
 
 const PORT = process.env.PORT || 4000;
@@ -89,10 +89,12 @@ app.post("/api/match", async (req, res) => {
 
     const externalJobs = await fetchExternalJobs(profile);
     const result = rankRolesForProfile(profile, externalJobs);
+    const journey = generateCareerJourney(profile, result.matches);
 
     res.json({
       profile,
-      ...result
+      ...result,
+      journey
     });
   } catch (error) {
     console.error("Error generating match", error);

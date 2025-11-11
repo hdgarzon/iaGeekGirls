@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 function MatchResults({
   profile,
   matches,
+  journey,
   onDownloadPdf,
   onReset,
   pdfLoading = false
@@ -127,6 +128,127 @@ function MatchResults({
         ))}
       </div>
 
+      {journey && (
+        <section className="space-y-6 rounded-3xl bg-gradient-to-br from-brand-secondary/10 to-brand-primary/10 p-8 shadow-soft ring-1 ring-brand-primary/5">
+          <header>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-secondary">
+              Journey Profesional
+            </p>
+            <h2 className="text-2xl font-bold text-brand-primary">
+              Tu camino hacia el éxito
+            </h2>
+            <p className="text-sm text-slate-600">
+              Plan personalizado de desarrollo profesional basado en tus resultados.
+            </p>
+          </header>
+
+          {/* Current Assessment */}
+          <div className="rounded-3xl bg-white p-6 shadow-soft">
+            <h3 className="text-lg font-semibold text-brand-primary mb-4">
+              📊 Evaluación Actual
+            </h3>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div>
+                <h4 className="font-semibold text-brand-secondary mb-2">💪 Fortalezas</h4>
+                <div className="flex flex-wrap gap-2">
+                  {journey.currentAssessment.strengths.map((strength) => (
+                    <span
+                      key={strength}
+                      className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800"
+                    >
+                      {strength}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="font-semibold text-orange-600 mb-2">🎯 Áreas de Mejora</h4>
+                <div className="flex flex-wrap gap-2">
+                  {journey.currentAssessment.areasForImprovement.map((area) => (
+                    <span
+                      key={area}
+                      className="rounded-full bg-orange-100 px-3 py-1 text-xs font-medium text-orange-800"
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <p className="mt-4 text-sm text-slate-600">
+              Nivel actual: <span className="font-semibold capitalize">{journey.currentAssessment.careerLevel}</span>
+            </p>
+          </div>
+
+          {/* Journey Phases */}
+          <div className="space-y-4">
+            {journey.phases.map((phase, index) => (
+              <div
+                key={index}
+                className="rounded-3xl bg-white p-6 shadow-soft border-l-4 border-brand-secondary"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-brand-primary">
+                      {phase.name}
+                    </h3>
+                    <p className="text-sm text-slate-600">{phase.duration}</p>
+                  </div>
+                  <span className="rounded-full bg-brand-secondary/10 px-3 py-1 text-xs font-semibold text-brand-secondary">
+                    Fase {index + 1}
+                  </span>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-3">
+                  <div>
+                    <h4 className="font-semibold text-brand-primary mb-2">🎯 Objetivos</h4>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      {phase.goals.map((goal, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="text-brand-secondary mt-1">•</span>
+                          {goal}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-brand-primary mb-2">🚀 Acciones</h4>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      {phase.actions.map((action, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="text-brand-secondary mt-1">•</span>
+                          {action}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-brand-primary mb-2">📚 Recursos</h4>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      {phase.resources.map((resource, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="text-brand-secondary mt-1">•</span>
+                          {resource}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-3xl bg-brand-primary/5 p-6 text-center">
+            <p className="text-sm text-brand-primary">
+              💡 <strong>Recuerda:</strong> Este journey es una guía flexible. Adáptalo a tu ritmo y circunstancias personales.
+              El crecimiento profesional es un viaje continuo.
+            </p>
+          </div>
+        </section>
+      )}
+
       <aside className="rounded-3xl border border-dashed border-brand-primary/30 bg-brand-primary/5 p-6 text-sm text-brand-primary">
         <h3 className="text-lg font-semibold text-brand-primary">
           Perfil analizado
@@ -186,6 +308,22 @@ MatchResults.propTypes = {
       lastUpdated: PropTypes.string
     })
   ).isRequired,
+  journey: PropTypes.shape({
+    currentAssessment: PropTypes.shape({
+      strengths: PropTypes.arrayOf(PropTypes.string),
+      areasForImprovement: PropTypes.arrayOf(PropTypes.string),
+      careerLevel: PropTypes.string
+    }),
+    phases: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        duration: PropTypes.string,
+        goals: PropTypes.arrayOf(PropTypes.string),
+        actions: PropTypes.arrayOf(PropTypes.string),
+        resources: PropTypes.arrayOf(PropTypes.string)
+      })
+    )
+  }),
   onDownloadPdf: PropTypes.func.isRequired,
   onReset: PropTypes.func.isRequired,
   pdfLoading: PropTypes.bool

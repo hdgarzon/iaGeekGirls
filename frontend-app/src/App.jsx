@@ -9,6 +9,7 @@ import {
 function App() {
   const [profile, setProfile] = useState(null);
   const [matches, setMatches] = useState([]);
+  const [journey, setJourney] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [loading, setLoading] = useState(false);
   const [pdfLoading, setPdfLoading] = useState(false);
@@ -24,6 +25,7 @@ function App() {
       });
       setProfile(data.profile);
       setMatches(data.matches || []);
+      setJourney(data.journey || null);
       setMetadata(data.metadata || null);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
@@ -67,6 +69,7 @@ function App() {
   const handleReset = () => {
     setProfile(null);
     setMatches([]);
+    setJourney(null);
     setMetadata(null);
     setError("");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -129,6 +132,7 @@ function App() {
           <MatchResults
             profile={profile}
             matches={matches}
+            journey={journey}
             onDownloadPdf={handleDownloadPdf}
             onReset={handleReset}
             pdfLoading={pdfLoading}
