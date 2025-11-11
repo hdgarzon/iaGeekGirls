@@ -291,16 +291,16 @@ app.post("/api/pdf", (req, res) => {
       });
     }
 
-    // Add Journey section (Recomendaciones IA)
+    // Add Journey section (Journey de Aprendizaje)
     if (journey) {
       doc.addPage();
-      doc.fillColor(primaryColor).fontSize(16).text("Recomendaciones IA", {
+      doc.fillColor(primaryColor).fontSize(16).text("Journey de Aprendizaje", {
         underline: true
       });
       doc.moveDown(0.5);
 
       // Current Assessment
-      doc.fillColor(primaryColor).fontSize(14).text("📊 Evaluación Actual", {
+      doc.fillColor(primaryColor).fontSize(14).text("Evaluacion Actual", {
         underline: true
       });
       doc.moveDown(0.3);
@@ -310,7 +310,7 @@ app.post("/api/pdf", (req, res) => {
 
       if (journey.currentAssessment.strengths?.length) {
         doc.moveDown(0.3);
-        doc.fillColor("#000").text("💪 Fortalezas:");
+        doc.fillColor("#000").text("Fortalezas:");
         journey.currentAssessment.strengths.forEach(strength => {
           doc.text(`• ${strength}`);
         });
@@ -318,7 +318,7 @@ app.post("/api/pdf", (req, res) => {
 
       if (journey.currentAssessment.areasForImprovement?.length) {
         doc.moveDown(0.3);
-        doc.fillColor("#000").text("🎯 Áreas de mejora:");
+        doc.fillColor("#000").text("Areas de mejora:");
         journey.currentAssessment.areasForImprovement.forEach(area => {
           doc.text(`• ${area}`);
         });
@@ -335,7 +335,7 @@ app.post("/api/pdf", (req, res) => {
         doc.fillColor("#000").fontSize(11);
 
         if (phase.goals?.length) {
-          doc.text("🎯 Objetivos:");
+          doc.text("Objetivos:");
           phase.goals.forEach(goal => {
             doc.text(`• ${goal}`);
           });
@@ -343,7 +343,7 @@ app.post("/api/pdf", (req, res) => {
         }
 
         if (phase.actions?.length) {
-          doc.text("🚀 Acciones:");
+          doc.text("Acciones:");
           phase.actions.forEach(action => {
             doc.text(`• ${action}`);
           });
@@ -351,7 +351,7 @@ app.post("/api/pdf", (req, res) => {
         }
 
         if (phase.resources?.length) {
-          doc.text("📚 Recursos:");
+          doc.text("Recursos:");
           phase.resources.forEach(resource => {
             doc.text(`• ${resource}`);
           });
@@ -360,7 +360,7 @@ app.post("/api/pdf", (req, res) => {
 
       doc.moveDown(0.8);
       doc.fillColor("#666").fontSize(10).text(
-        "💡 Este journey es una guía flexible. Adáptalo a tu ritmo y circunstancias personales.",
+        "Este journey es una guia flexible. Adaptalo a tu ritmo y circunstancias personales.",
         { align: "center" }
       );
     }
