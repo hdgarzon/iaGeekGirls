@@ -262,6 +262,195 @@ function MatchResults({
         </section>
       )}
 
+      {/* Career Opportunities Section */}
+      <section className="space-y-6 rounded-3xl bg-gradient-to-br from-slate-50 to-blue-50 p-8 shadow-soft ring-1 ring-brand-primary/5">
+        <header>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-secondary">
+            Oportunidades Laborales
+          </p>
+          <h2 className="text-2xl font-bold text-brand-primary">
+            Carreras que puedes alcanzar
+          </h2>
+          <p className="text-sm text-slate-600">
+            Al completar estas rutas de aprendizaje, podrás acceder a posiciones como estas en el mercado STEM.
+          </p>
+        </header>
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 p-6 border border-blue-200 hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
+                <span className="text-white font-bold">💻</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-blue-900">Desarrollo Web</h3>
+                <p className="text-sm text-blue-700">Frontend/Backend</p>
+              </div>
+            </div>
+            <p className="text-sm text-blue-800 mb-3">
+              Desarrolladora Full-Stack, Ingeniera Frontend, Arquitecta Web, DevOps Engineer
+            </p>
+            <div className="flex flex-wrap gap-2 mb-3">
+              <span className="px-3 py-1 bg-blue-200 text-blue-800 text-xs font-medium rounded-full">React</span>
+              <span className="px-3 py-1 bg-blue-200 text-blue-800 text-xs font-medium rounded-full">Node.js</span>
+              <span className="px-3 py-1 bg-blue-200 text-blue-800 text-xs font-medium rounded-full">Python</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold text-blue-900">$2,000 - $5,000 USD</span>
+              <span className="text-xs text-blue-600">Entry-Mid Level</span>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-gradient-to-br from-green-50 to-green-100 p-6 border border-green-200 hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
+                <span className="text-white font-bold">📊</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-green-900">Análisis de Datos</h3>
+                <p className="text-sm text-green-700">Data Science</p>
+              </div>
+            </div>
+            <p className="text-sm text-green-800 mb-3">
+              Analista de Datos, Business Intelligence, Data Engineer, BI Developer
+            </p>
+            <div className="flex flex-wrap gap-2 mb-3">
+              <span className="px-3 py-1 bg-green-200 text-green-800 text-xs font-medium rounded-full">Python</span>
+              <span className="px-3 py-1 bg-green-200 text-green-800 text-xs font-medium rounded-full">SQL</span>
+              <span className="px-3 py-1 bg-green-200 text-green-800 text-xs font-medium rounded-full">Tableau</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold text-green-900">$2,500 - $6,000 USD</span>
+              <span className="text-xs text-green-600">Entry-Mid Level</span>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 p-6 border border-purple-200 hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center">
+                <span className="text-white font-bold">🎨</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-purple-900">Diseño UX/UI</h3>
+                <p className="text-sm text-purple-700">Product Design</p>
+              </div>
+            </div>
+            <p className="text-sm text-purple-800 mb-3">
+              Diseñadora UX, Product Designer, UI Developer, Design System Lead
+            </p>
+            <div className="flex flex-wrap gap-2 mb-3">
+              <span className="px-3 py-1 bg-purple-200 text-purple-800 text-xs font-medium rounded-full">Figma</span>
+              <span className="px-3 py-1 bg-purple-200 text-purple-800 text-xs font-medium rounded-full">Sketch</span>
+              <span className="px-3 py-1 bg-purple-200 text-purple-800 text-xs font-medium rounded-full">Design</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold text-purple-900">$2,000 - $4,500 USD</span>
+              <span className="text-xs text-purple-600">Entry-Mid Level</span>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-gradient-to-br from-red-50 to-red-100 p-6 border border-red-200 hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center">
+                <span className="text-white font-bold">🔒</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-red-900">Ciberseguridad</h3>
+                <p className="text-sm text-red-700">Security</p>
+              </div>
+            </div>
+            <p className="text-sm text-red-800 mb-3">
+              Analista de Seguridad, Ethical Hacker, Security Engineer, SOC Analyst
+            </p>
+            <div className="flex flex-wrap gap-2 mb-3">
+              <span className="px-3 py-1 bg-red-200 text-red-800 text-xs font-medium rounded-full">Python</span>
+              <span className="px-3 py-1 bg-red-200 text-red-800 text-xs font-medium rounded-full">Security</span>
+              <span className="px-3 py-1 bg-red-200 text-red-800 text-xs font-medium rounded-full">Linux</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold text-red-900">$3,000 - $7,000 USD</span>
+              <span className="text-xs text-red-600">Mid-Senior Level</span>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 border border-yellow-200 hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center">
+                <span className="text-white font-bold">🚀</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-yellow-900">Ciencia de Datos</h3>
+                <p className="text-sm text-yellow-700">AI/ML</p>
+              </div>
+            </div>
+            <p className="text-sm text-yellow-800 mb-3">
+              Científica de Datos, ML Engineer, AI Researcher, Data Scientist
+            </p>
+            <div className="flex flex-wrap gap-2 mb-3">
+              <span className="px-3 py-1 bg-yellow-200 text-yellow-800 text-xs font-medium rounded-full">Python</span>
+              <span className="px-3 py-1 bg-yellow-200 text-yellow-800 text-xs font-medium rounded-full">TensorFlow</span>
+              <span className="px-3 py-1 bg-yellow-200 text-yellow-800 text-xs font-medium rounded-full">ML</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold text-yellow-900">$3,500 - $8,000 USD</span>
+              <span className="text-xs text-yellow-600">Mid-Senior Level</span>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 border border-indigo-200 hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center">
+                <span className="text-white font-bold">📈</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-indigo-900">Product Management</h3>
+                <p className="text-sm text-indigo-700">Product</p>
+              </div>
+            </div>
+            <p className="text-sm text-indigo-800 mb-3">
+              Product Manager, Associate PM, Product Owner, Growth Hacker
+            </p>
+            <div className="flex flex-wrap gap-2 mb-3">
+              <span className="px-3 py-1 bg-indigo-200 text-indigo-800 text-xs font-medium rounded-full">Strategy</span>
+              <span className="px-3 py-1 bg-indigo-200 text-indigo-800 text-xs font-medium rounded-full">Agile</span>
+              <span className="px-3 py-1 bg-indigo-200 text-indigo-800 text-xs font-medium rounded-full">Analytics</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold text-indigo-900">$3,000 - $6,000 USD</span>
+              <span className="text-xs text-indigo-600">Mid Level</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-3xl bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10 p-6 border border-brand-primary/20">
+          <div className="text-center">
+            <h3 className="text-lg font-bold text-brand-primary mb-2">🎯 Tu futuro profesional te espera</h3>
+            <p className="text-sm text-brand-primary mb-4">
+              Estas rutas de aprendizaje están diseñadas para llevarte desde donde estás ahora hasta estas posiciones de alto impacto.
+              Cada módulo, cada proyecto, cada certificación te acerca más a tu objetivo profesional.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-xs">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+                <span>Alta demanda laboral</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 bg-blue-500 rounded-full"></span>
+                <span>Salarios competitivos</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 bg-purple-500 rounded-full"></span>
+                <span>Crecimiento profesional</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                <span>Impacto social positivo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <aside className="rounded-3xl border border-dashed border-brand-primary/30 bg-brand-primary/5 p-6 text-sm text-brand-primary">
         <h3 className="text-lg font-semibold text-brand-primary">
           Perfil de aprendizaje
