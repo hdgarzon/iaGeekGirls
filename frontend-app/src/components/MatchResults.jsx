@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 
 function MatchResults({
   profile,
-  matches,
+  recommendations,
   journey,
   onDownloadPdf,
   onReset,
   pdfLoading = false
 }) {
-  if (!matches?.length) {
+  if (!recommendations?.length) {
     return null;
   }
 
@@ -19,14 +19,14 @@ function MatchResults({
       <header className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-secondary">
-            Resultados IA
+            Recomendaciones IA
           </p>
           <h2 className="text-2xl font-bold text-brand-primary">
-            Tus Top 3 matches laborales
+            Tus Top 3 rutas de aprendizaje STEM
           </h2>
           <p className="text-sm text-slate-600">
-            Basado en tus habilidades, intereses y aspiraciones. Revisa cada rol y
-            descarga tu reporte personalizado.
+            Basado en tu perfil, experiencia y objetivos. Revisa cada ruta y
+            descarga tu plan de estudios personalizado.
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -43,86 +43,99 @@ function MatchResults({
             disabled={pdfLoading}
             className="flex items-center gap-2 rounded-full bg-brand-primary px-5 py-2 text-sm font-semibold text-white shadow-lg transition hover:bg-brand-secondary disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {pdfLoading ? "Generando PDF..." : "Descargar reporte PDF"}
+            {pdfLoading ? "Generando plan de estudios..." : "Descargar plan de estudios PDF"}
           </button>
         </div>
       </header>
 
       <div className="grid gap-6 md:grid-cols-3">
-        {matches.map((match, index) => (
+        {recommendations.map((rec, index) => (
           <article
-            key={match.id}
+            key={rec.id}
             className="gradient-card flex flex-col justify-between rounded-3xl border border-white/40 bg-white/80 p-6 shadow-soft backdrop-blur-sm"
           >
             <div className="space-y-4">
-              <span className="inline-flex items-center gap-2 rounded-full bg-brand-secondary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-secondary">
-                Rol #{index + 1}
-              </span>
-              <h3 className="text-xl font-bold text-brand-primary">{match.role}</h3>
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-2 rounded-full bg-brand-secondary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-secondary">
+                  Ruta #{index + 1}
+                </span>
+                <span className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium ${
+                  rec.level === 'beginner' ? 'bg-green-100 text-green-800' :
+                  rec.level === 'intermediate' ? 'bg-yellow-100 text-yellow-800' :
+                  'bg-red-100 text-red-800'
+                }`}>
+                  {rec.level === 'beginner' ? 'Principiante' :
+                   rec.level === 'intermediate' ? 'Intermedio' : 'Avanzado'}
+                </span>
+              </div>
+              <h3 className="text-xl font-bold text-brand-primary">{rec.title}</h3>
+              <p className="text-sm font-medium text-brand-secondary">{rec.area}</p>
               <div className="flex items-center gap-3">
                 <div className="flex-1 overflow-hidden rounded-full bg-brand-primary/10">
                   <div
                     className="h-2 rounded-full bg-brand-secondary transition-all"
-                    style={{ width: `${formatScore(match.score)}%` }}
+                    style={{ width: `${formatScore(rec.score)}%` }}
                   />
                 </div>
                 <span className="text-sm font-semibold text-brand-primary">
-                  {formatScore(match.score)}%
+                  {formatScore(rec.score)}%
                 </span>
               </div>
-              {match.description ? (
-                <p className="text-sm text-slate-600">{match.description}</p>
+              <p className="text-sm text-slate-600">{rec.description}</p>
+              <div className="flex items-center gap-4 text-xs text-slate-500">
+                <span>⏱️ {rec.duration}</span>
+                <span>📚 {rec.modules?.length || 0} módulos</span>
+              </div>
+              {rec.prerequisites?.length ? (
+                <div>
+                  <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-600">
+                    Prerrequisitos
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    {rec.prerequisites.join(", ")}
+                  </p>
+                </div>
               ) : null}
-              {match.matchedSkills?.length ? (
+              {rec.careerOutcomes?.length ? (
                 <div>
                   <h4 className="text-xs font-semibold uppercase tracking-wide text-brand-primary">
-                    Habilidades destacadas
+                    Carreras posibles
                   </h4>
                   <div className="mt-1 flex flex-wrap gap-2">
-                    {match.matchedSkills.map((skill) => (
+                    {rec.careerOutcomes.slice(0, 3).map((outcome) => (
                       <span
-                        key={skill}
+                        key={outcome}
                         className="rounded-full bg-brand-primary/10 px-3 py-1 text-xs font-medium text-brand-primary"
                       >
-                        {skill}
+                        {outcome}
                       </span>
                     ))}
                   </div>
                 </div>
               ) : null}
-              {match.missingSkills?.length ? (
-                <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-600">
-                    Sugerencias de mejora
-                  </h4>
-                  <p className="text-sm text-slate-600">
-                    Refuerza: {match.missingSkills.slice(0, 5).join(", ")}
-                  </p>
-                </div>
-              ) : null}
-              {match.rationale ? (
+              {rec.rationale ? (
                 <p className="rounded-xl bg-white px-3 py-2 text-xs text-slate-600 shadow-inner">
-                  {match.rationale}
+                  {rec.rationale}
                 </p>
               ) : null}
             </div>
             <footer className="mt-6 space-y-2 text-xs text-slate-500">
               <p className="font-medium text-brand-primary">
                 Fuente:{" "}
-                {match.sourceUrl ? (
+                {rec.sourceUrl ? (
                   <a
-                    href={match.sourceUrl}
+                    href={rec.sourceUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="text-brand-secondary underline decoration-brand-secondary/40 hover:decoration-brand-secondary"
                   >
-                    {match.source}
+                    {rec.source}
                   </a>
                 ) : (
-                  <span>{match.source}</span>
+                  <span>{rec.source}</span>
                 )}
               </p>
-              <p>Actualizado: {new Date(match.lastUpdated).toLocaleDateString()}</p>
+              <p>Actualizado: {new Date(rec.lastUpdated).toLocaleDateString()}</p>
             </footer>
           </article>
         ))}
@@ -132,13 +145,13 @@ function MatchResults({
         <section className="space-y-6 rounded-3xl bg-gradient-to-br from-brand-secondary/10 to-brand-primary/10 p-8 shadow-soft ring-1 ring-brand-primary/5">
           <header>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-secondary">
-              Journey Profesional
+              Journey de Aprendizaje
             </p>
             <h2 className="text-2xl font-bold text-brand-primary">
-              Tu camino hacia el éxito
+              Tu ruta hacia el dominio STEM
             </h2>
             <p className="text-sm text-slate-600">
-              Plan personalizado de desarrollo profesional basado en tus resultados.
+              Plan personalizado de aprendizaje STEM basado en tu perfil y objetivos.
             </p>
           </header>
 
@@ -176,7 +189,7 @@ function MatchResults({
               </div>
             </div>
             <p className="mt-4 text-sm text-slate-600">
-              Nivel actual: <span className="font-semibold capitalize">{journey.currentAssessment.careerLevel}</span>
+              Nivel actual: <span className="font-semibold capitalize">{journey.currentAssessment.learningLevel}</span>
             </p>
           </div>
 
@@ -251,30 +264,30 @@ function MatchResults({
 
       <aside className="rounded-3xl border border-dashed border-brand-primary/30 bg-brand-primary/5 p-6 text-sm text-brand-primary">
         <h3 className="text-lg font-semibold text-brand-primary">
-          Perfil analizado
+          Perfil de aprendizaje
         </h3>
         <div className="mt-3 grid gap-3 md:grid-cols-3">
           <p>
             <span className="font-semibold">Nombre:</span> {profile?.fullName}
           </p>
           <p>
-            <span className="font-semibold">Área principal:</span>{" "}
+            <span className="font-semibold">Área de interés:</span>{" "}
             {profile?.primaryArea}
           </p>
           <p>
-            <span className="font-semibold">Experiencia:</span>{" "}
+            <span className="font-semibold">Experiencia previa:</span>{" "}
             {profile?.experienceYears} años
           </p>
           <p>
-            <span className="font-semibold">Intereses:</span>{" "}
+            <span className="font-semibold">Intereses STEM:</span>{" "}
             {profile?.techInterests?.slice(0, 3).join(", ")}
           </p>
           <p>
-            <span className="font-semibold">Preferencia laboral:</span>{" "}
+            <span className="font-semibold">Disponibilidad:</span>{" "}
             {profile?.workPreference}
           </p>
           <p>
-            <span className="font-semibold">Expectativas:</span>{" "}
+            <span className="font-semibold">Objetivos:</span>{" "}
             {profile?.expectations?.slice(0, 2).join(", ")}
           </p>
         </div>
@@ -294,11 +307,17 @@ MatchResults.propTypes = {
     workPreference: PropTypes.string,
     expectations: PropTypes.arrayOf(PropTypes.string)
   }),
-  matches: PropTypes.arrayOf(
+  recommendations: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
-      role: PropTypes.string,
+      title: PropTypes.string,
+      area: PropTypes.string,
+      level: PropTypes.string,
+      duration: PropTypes.string,
       description: PropTypes.string,
+      prerequisites: PropTypes.arrayOf(PropTypes.string),
+      modules: PropTypes.arrayOf(PropTypes.object),
+      careerOutcomes: PropTypes.arrayOf(PropTypes.string),
       score: PropTypes.number,
       matchedSkills: PropTypes.arrayOf(PropTypes.string),
       missingSkills: PropTypes.arrayOf(PropTypes.string),
@@ -312,7 +331,7 @@ MatchResults.propTypes = {
     currentAssessment: PropTypes.shape({
       strengths: PropTypes.arrayOf(PropTypes.string),
       areasForImprovement: PropTypes.arrayOf(PropTypes.string),
-      careerLevel: PropTypes.string
+      learningLevel: PropTypes.string
     }),
     phases: PropTypes.arrayOf(
       PropTypes.shape({

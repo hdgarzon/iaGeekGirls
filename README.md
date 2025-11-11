@@ -1,6 +1,6 @@
-## Geek Girls LatAm – Match de Perfil Laboral con IA
+## Geek Girls LatAm – Rutas Personalizadas de Aprendizaje STEM con IA
 
-Plataforma web que guía a las egresadas de Geek Girls LatAm hacia rutas profesionales STEM. El flujo conecta un formulario integral, un backend con motor de matching basado en similitud semántica y generación de reportes PDF listos para compartir.
+Plataforma web que guía a las beneficiarias de Geek Girls LatAm hacia rutas de aprendizaje STEM personalizadas. El flujo conecta un formulario de evaluación, un backend con motor de recomendación de rutas de aprendizaje basado en similitud semántica y generación de planes de estudio PDF personalizados.
 
 ### 🌐 Estructura del repositorio
 
@@ -10,10 +10,11 @@ Plataforma web que guía a las egresadas de Geek Girls LatAm hacia rutas profesi
 
 ### ✨ Características clave
 
-- **Formulario de orientación profesional** dividido en 6 secciones con validaciones obligatorias.
-- **Motor de match** que compara perfiles contra roles de un dataset consolidado y fuentes públicas (Adzuna, Remotive, etc.).
-- **Recomendaciones explicables** con porcentaje de ajuste, habilidades coincidentes y sugerencias de mejora.
-- **Reporte PDF institucional** con colores Geek Girls LatAm (`#34267E` y `#FF0084`), resumen del perfil y matches destacados.
+- **Formulario de evaluación educativa** dividido en secciones que capturan intereses, experiencia y objetivos de aprendizaje.
+- **Motor de recomendación de rutas** que sugiere caminos de aprendizaje STEM personalizados basados en el perfil de la beneficiaria.
+- **Rutas de aprendizaje estructuradas** con módulos secuenciales, recursos recomendados y cronogramas realistas.
+- **Journey de aprendizaje personalizado** con 4 fases de desarrollo profesional desde principiante hasta experta.
+- **Plan de estudios PDF** con colores Geek Girls LatAm (`#34267E` y `#FF0084`), evaluación del perfil, rutas recomendadas y journey completo.
 - **Persistencia temporal** de perfiles en memoria para pruebas rápidas (puede extenderse a Supabase/Firestore).
 
 ### 🧰 Stack principal
@@ -77,22 +78,22 @@ Requisitos: Node.js >= 18, npm >= 9.
 | `POST` | `/api/profiles` | Guarda un perfil y devuelve el registro creado.                          |
 | `PUT`  | `/api/profiles/:id` | Actualiza un perfil existente.                                      |
 | `GET`  | `/api/profiles` | Lista perfiles cargados (útil para panel administrativo).               |
-| `POST` | `/api/match` | Genera coincidencias (`top 3`) contra dataset + APIs externas.             |
-| `POST` | `/api/pdf`   | Genera y devuelve un PDF con resumen del perfil y recomendaciones.         |
+| `POST` | `/api/match` | Genera recomendaciones de rutas de aprendizaje (`top 3`) personalizadas.    |
+| `POST` | `/api/pdf`   | Genera y devuelve un PDF con plan de estudios completo y journey.           |
 
-### 🧠 Motor de matching
+### 🧠 Motor de recomendación de rutas
 
-1. **Normalización de texto**: se combinan respuestas clave del formulario en un documento del perfil.
-2. **Vectorización**: se construyen mapas de frecuencia por token (puede sustituirse por embeddings de OpenAI o `sentence-transformers` sin afectar el contrato).
-3. **Similitud de coseno**: se recorren roles internos + trabajos externos (`Promise.allSettled` para manejar errores) y se calculan puntuaciones.
-4. **Explicabilidad**: por cada match se calculan habilidades coincidentes, brechas y un racional en texto natural.
+1. **Evaluación del perfil**: se analiza el nivel de aprendizaje actual, intereses y experiencia previa.
+2. **Vectorización semántica**: se construyen mapas de frecuencia por token del perfil (puede sustituirse por embeddings de OpenAI o `sentence-transformers`).
+3. **Recomendación inteligente**: se evalúan rutas de aprendizaje considerando nivel, intereses y prerrequisitos, calculando puntuaciones de afinidad.
+4. **Journey personalizado**: se genera un plan de desarrollo en 4 fases con objetivos, acciones y recursos específicos.
 
-> La carpeta `backend/src/data/` incluye `rolesDataset.json` y `externalJobsSample.json` como punto de partida. Reemplázalos o enriquece la fuente desde pipelines ETL reales.
+> La carpeta `backend/src/data/` incluye `rolesDataset.json` (ahora convertido en rutas de aprendizaje) como punto de partida. Las rutas incluyen módulos secuenciales, recursos y cronogramas realistas.
 
-### 📄 Reporte PDF
+### 📄 Plan de estudios PDF
 
 - Encabezado institucional con tipografía sans-serif y gradiente de marca.
-- Secciones: resumen del perfil, top matches, recomendaciones, fuentes de datos y fecha.
+- Secciones: evaluación del perfil, rutas de aprendizaje recomendadas, journey completo en 4 fases, recursos específicos y cronograma.
 - Generado con PDFKit; la respuesta HTTP incluye `Content-Disposition: attachment`.
 
 ### 🖼️ Frontend
@@ -111,11 +112,14 @@ Requisitos: Node.js >= 18, npm >= 9.
 
 ### ✅ Próximos pasos
 
-1. Ajustar el dataset con información propia o fuentes oficiales actualizadas.
-2. Añadir autenticación y consentimiento explícito conforme a Habeas Data/GDPR.
-3. Automatizar despliegues (Railway/Render para backend y Vercel/Netlify para frontend).
+1. **Enriquecer el dataset de rutas**: agregar más rutas de aprendizaje STEM con recursos actualizados y validados.
+2. **Validar rutas con expertas**: asegurar que las rutas sean realistas y efectivas para el contexto latinoamericano.
+3. **Añadir seguimiento de progreso**: permitir que las beneficiarias marquen módulos completados y den feedback.
+4. **Integrar plataformas de aprendizaje**: conectar con Coursera, edX, Udemy para recursos específicos.
+5. **Añadir autenticación y consentimiento** conforme a Habeas Data/GDPR.
+6. **Automatizar despliegues** (Railway/Render para backend y Vercel/Netlify para frontend).
 
 ---
 
-Si necesitas que el agente genere código adicional, conecte nuevas APIs o prepare despliegues automatizados, indícalo en tu próximo mensaje. ¡Vamos a llevar el match laboral de las Geek Girls al siguiente nivel! 💜🚀
+¡La transformación está completa! Ahora tienes un asistente de rutas de aprendizaje STEM personalizado que automatiza el proceso manual de orientación educativa de Geek Girls LatAm. El sistema genera planes de estudio completos con journey de 4 fases, evaluando el perfil de cada beneficiaria y recomendando el camino más adecuado para su desarrollo profesional en STEM. 💜🚀
 

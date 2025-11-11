@@ -8,7 +8,7 @@ const {
   getProfile,
   listProfiles
 } = require("./services/profileRepository");
-const { rankRolesForProfile, generateCareerJourney } = require("./services/matchService");
+const { recommendLearningPaths, generateLearningJourney } = require("./services/matchService");
 const { fetchExternalJobs } = require("./services/externalJobsService");
 
 const PORT = process.env.PORT || 4000;
@@ -87,9 +87,8 @@ app.post("/api/match", async (req, res) => {
       });
     }
 
-    const externalJobs = await fetchExternalJobs(profile);
-    const result = rankRolesForProfile(profile, externalJobs);
-    const journey = generateCareerJourney(profile, result.matches);
+    const result = recommendLearningPaths(profile);
+    const journey = generateLearningJourney(profile, result.recommendations);
 
     res.json({
       profile,

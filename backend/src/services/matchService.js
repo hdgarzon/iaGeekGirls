@@ -13,13 +13,13 @@ function loadDataset() {
   return JSON.parse(buffer);
 }
 
-function buildRoleDocument(roleEntry) {
+function buildLearningPathDocument(pathEntry) {
   const segments = [
-    roleEntry.role,
-    roleEntry.description,
-    ...(roleEntry.skills || []),
-    ...(roleEntry.softSkills || []),
-    roleEntry.source
+    pathEntry.title,
+    pathEntry.area,
+    pathEntry.description,
+    ...(pathEntry.modules?.flatMap(module => module.topics) || []),
+    pathEntry.source
   ];
 
   return segments.filter(Boolean).join(" ");
@@ -34,20 +34,25 @@ function computeOverlap(listA = [], listB = []) {
     .filter((item) => item && normalizedB.has(item.toLowerCase()));
 }
 
-function rankRolesForProfile(profile, externalJobs = [], topK = 3) {
+function recommendLearningPaths(profile, topK = 3) {
   const dataset = loadDataset();
   const profileDocument = buildProfileDocument(profile);
   const profileVector = toFrequencyMap(profileDocument);
 
-  const roleEntries = [
-    ...dataset.map((entry) => ({
-      type: "dataset",
-      payload: entry
-    })),
-    ...externalJobs.map((entry) => ({
-      type: "external",
-      payload: entry
-    }))
+  // Determinar nivel del usuario basado en experiencia
+  let userLevel = "beginner";
+  const experienceYears = profile.experienceYears || 0;
+  if (experienceYears >= 3) {
+    userLevel = "advanced";
+  } else if (experienceYears >= 1) {
+    userLevel = "intermediate";
+  }
+
+  // Extraer intereses y habilidades del perfil
+  const profileInterests = [
+    ...(profile.techInterests || []),
+    ...(profile.primaryArea ? [profile.primaryArea] : []),
+    ...(profile.motivations || [])
   ];
 
   const profileSkills = [
@@ -55,65 +60,100 @@ function rankRolesForProfile(profile, externalJobs = [], topK = 3) {
     ...(profile.tools || []),
     ...(profile.languages || [])
   ];
-  const profileSoftSkills = profile.softSkills || [];
 
-  const scored = roleEntries
-    .map(({ payload, type }) => {
-      const document = buildRoleDocument(payload);
+  const scored = dataset
+    .map((path) => {
+      const document = buildLearningPathDocument(path);
       const vector = toFrequencyMap(document);
-      const score = cosineSimilarity(profileVector, vector);
+      let score = cosineSimilarity(profileVector, vector);
 
-      const matchedSkills = computeOverlap(payload.skills || [], profileSkills);
-      const missingSkills = (payload.skills || []).filter(
+      // Bonus por coincidencia de nivel
+      if (path.level === userLevel) {
+        score += 0.3;
+      } else if (
+        (userLevel === "beginner" && path.level === "intermediate") ||
+        (userLevel === "intermediate" && path.level === "advanced")
+      ) {
+        score += 0.1;
+      }
+
+      // Bonus por intereses alineados
+      const interestOverlap = computeOverlap(
+        profileInterests,
+        [path.area, path.title, ...(path.modules?.flatMap(m => m.topics) || [])]
+      );
+      score += interestOverlap.length * 0.1;
+
+      // Penalización por prerrequisitos no cumplidos
+      const prerequisites = path.prerequisites || [];
+      const hasPrerequisites = prerequisites.some(prereq =>
+        profileSkills.some(skill =>
+          prereq.toLowerCase().includes(skill.toLowerCase()) ||
+          skill.toLowerCase().includes(prereq.toLowerCase())
+        )
+      );
+
+      if (prerequisites.length > 0 && !hasPrerequisites && userLevel === "beginner") {
+        score -= 0.2;
+      }
+
+      // Calcular habilidades requeridas vs poseídas
+      const requiredSkills = path.modules?.flatMap(module => module.topics) || [];
+      const matchedSkills = computeOverlap(requiredSkills, profileSkills);
+      const missingSkills = requiredSkills.filter(
         (skill) =>
           !matchedSkills.find(
             (matched) => matched.toLowerCase() === skill.toLowerCase()
           )
       );
 
-      const softSkillOverlap = computeOverlap(
-        payload.softSkills || [],
-        profileSoftSkills
-      );
-
       const rationale = [
+        path.level === userLevel
+          ? `Nivel apropiado para ti (${path.level})`
+          : `Transición de nivel: ${userLevel} → ${path.level}`,
         matchedSkills.length
-          ? `Coincidencia en habilidades técnicas: ${matchedSkills.join(", ")}`
+          ? `Ya tienes ${matchedSkills.length} habilidades requeridas`
           : null,
-        softSkillOverlap.length
-          ? `Habilidades blandas alineadas: ${softSkillOverlap.join(", ")}`
+        interestOverlap.length
+          ? `Alineado con tus intereses: ${interestOverlap.slice(0, 2).join(", ")}`
           : null,
-        profile.motivations?.length
-          ? `Motivaciones clave: ${profile.motivations.join(", ")}`
+        path.duration
+          ? `Duración estimada: ${path.duration}`
           : null
       ]
         .filter(Boolean)
         .join(" | ");
 
       return {
-        id: payload.id || payload.role,
-        role: payload.role,
-        description: payload.description,
-        source: payload.source || payload.provider || "Fuente externa",
-        sourceUrl: payload.sourceUrl || payload.url,
+        id: path.id,
+        title: path.title,
+        area: path.area,
+        level: path.level,
+        duration: path.duration,
+        description: path.description,
+        prerequisites: path.prerequisites,
+        modules: path.modules,
+        careerOutcomes: path.careerOutcomes,
+        source: path.source,
+        sourceUrl: path.sourceUrl,
         score: Number(score.toFixed(4)),
         matchedSkills,
         missingSkills,
-        softSkillOverlap,
         rationale,
-        lastUpdated: payload.lastUpdated || new Date().toISOString(),
-        type
+        lastUpdated: path.lastUpdated || new Date().toISOString(),
+        type: "learning-path"
       };
     })
     .filter((entry) => entry.score > 0);
 
   const sorted = scored.sort((a, b) => b.score - a.score);
-  const topMatches = sorted.slice(0, topK);
+  const topRecommendations = sorted.slice(0, topK);
 
   return {
-    matches: topMatches,
+    recommendations: topRecommendations,
     metadata: {
       totalCandidates: scored.length,
+      userLevel,
       generatedAt: new Date().toISOString(),
       profileId: profile.id
     }
@@ -262,8 +302,145 @@ function generateCareerJourney(profile, matches) {
   return journey;
 }
 
+function generateLearningJourney(profile, recommendations) {
+  const journey = {
+    currentAssessment: {
+      strengths: [],
+      areasForImprovement: [],
+      learningLevel: "beginner"
+    },
+    phases: [
+      {
+        name: "Exploración y Fundamentos (1-2 meses)",
+        duration: "1-2 meses",
+        goals: [],
+        actions: [],
+        resources: []
+      },
+      {
+        name: "Desarrollo de Habilidades (2-4 meses)",
+        duration: "2-4 meses",
+        goals: [],
+        actions: [],
+        resources: []
+      },
+      {
+        name: "Proyecto Práctico (2-3 meses)",
+        duration: "2-3 meses",
+        goals: [],
+        actions: [],
+        resources: []
+      },
+      {
+        name: "Especialización y Crecimiento (3-6 meses)",
+        duration: "3-6 meses",
+        goals: [],
+        actions: [],
+        resources: []
+      }
+    ]
+  };
+
+  // Determinar nivel de aprendizaje
+  const experienceYears = profile.experienceYears || 0;
+  if (experienceYears < 1) {
+    journey.currentAssessment.learningLevel = "beginner";
+  } else if (experienceYears < 3) {
+    journey.currentAssessment.learningLevel = "intermediate";
+  } else {
+    journey.currentAssessment.learningLevel = "advanced";
+  }
+
+  // Analizar fortalezas y áreas de mejora basadas en recomendaciones
+  const allMatchedSkills = recommendations.flatMap(rec => rec.matchedSkills || []);
+  const allMissingSkills = recommendations.flatMap(rec => rec.missingSkills || []);
+  const uniqueMatchedSkills = [...new Set(allMatchedSkills)];
+  const uniqueMissingSkills = [...new Set(allMissingSkills)];
+
+  journey.currentAssessment.strengths = uniqueMatchedSkills.slice(0, 5);
+  journey.currentAssessment.areasForImprovement = uniqueMissingSkills.slice(0, 5);
+
+  // Fase 1: Exploración
+  journey.phases[0].goals = [
+    "Descubrir áreas de interés en STEM",
+    "Construir conocimientos básicos",
+    "Desarrollar confianza en el aprendizaje"
+  ];
+  journey.phases[0].actions = [
+    "Completar cursos introductorios en plataformas gratuitas",
+    "Unirte a comunidades STEM en redes sociales",
+    "Participar en talleres y webinars gratuitos",
+    "Experimentar con herramientas básicas"
+  ];
+  journey.phases[0].resources = [
+    "Coursera audít, edX, Khan Academy",
+    "Comunidades en Reddit (r/learnprogramming, r/datascience)",
+    "YouTube channels: freeCodeCamp, CS Dojo",
+    "Meetups locales de tecnología"
+  ];
+
+  // Fase 2: Desarrollo de Habilidades
+  journey.phases[1].goals = [
+    "Dominar fundamentos técnicos",
+    "Desarrollar proyectos personales",
+    "Construir portafolio básico"
+  ];
+  journey.phases[1].actions = [
+    "Tomar cursos especializados en tu área de interés",
+    "Practicar diariamente con ejercicios y challenges",
+    "Contribuir a proyectos open source simples",
+    "Unirte a grupos de estudio"
+  ];
+  journey.phases[1].resources = [
+    "Udemy, LinkedIn Learning (becas disponibles)",
+    "LeetCode, HackerRank, Exercism",
+    "GitHub para proyectos personales",
+    "Discord communities, study groups"
+  ];
+
+  // Fase 3: Proyecto Práctico
+  journey.phases[2].goals = [
+    "Aplicar conocimientos en proyectos reales",
+    "Desarrollar habilidades de resolución de problemas",
+    "Construir experiencia práctica"
+  ];
+  journey.phases[2].actions = [
+    "Desarrollar un proyecto personal completo",
+    "Participar en hackathons o challenges",
+    "Buscar oportunidades de freelance junior",
+    "Mentorear a principiantes"
+  ];
+  journey.phases[2].resources = [
+    "Devpost, AngelHack para hackathons",
+    "Upwork, Fiverr para proyectos freelance",
+    "GitHub portfolio, LinkedIn",
+    "Mentorship programs gratuitos"
+  ];
+
+  // Fase 4: Especialización y Crecimiento
+  journey.phases[3].goals = [
+    "Especializarse en un área específica",
+    "Contribuir a la comunidad STEM",
+    "Buscar oportunidades profesionales"
+  ];
+  journey.phases[3].actions = [
+    "Tomar certificaciones reconocidas",
+    "Contribuir activamente a comunidades",
+    "Buscar pasantías o posiciones junior",
+    "Desarrollar emprendimientos tecnológicos"
+  ];
+  journey.phases[3].resources = [
+    "Certificaciones Google, AWS, Microsoft (becas)",
+    "Conferencias: PyCon, JSConf, Women Techmakers",
+    "LinkedIn, Indeed para oportunidades",
+    "Programas de emprendimiento para mujeres"
+  ];
+
+  return journey;
+}
+
 module.exports = {
-  rankRolesForProfile,
-  generateCareerJourney
+  recommendLearningPaths,
+  generateLearningJourney
 };
 

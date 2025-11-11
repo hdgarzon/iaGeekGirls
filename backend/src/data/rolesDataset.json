@@ -1,99 +1,261 @@
 [
   {
-    "id": "role-frontend-engineer",
-    "role": "Frontend Engineer",
-    "skills": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "React",
-      "UI",
-      "Accessibility"
+    "id": "path-web-development",
+    "title": "Desarrollo Web Full-Stack",
+    "area": "Desarrollo de Software",
+    "level": "intermediate",
+    "duration": "6-9 meses",
+    "description": "Aprende a crear aplicaciones web completas desde cero. Esta ruta te lleva desde los fundamentos hasta el desarrollo profesional.",
+    "prerequisites": ["Ninguno - ideal para principiantes"],
+    "modules": [
+      {
+        "name": "Fundamentos Web",
+        "duration": "4-6 semanas",
+        "topics": ["HTML", "CSS", "JavaScript Básico"],
+        "resources": ["freeCodeCamp", "MDN Web Docs", "Codecademy"],
+        "projects": ["Página web personal", "Formulario interactivo"]
+      },
+      {
+        "name": "Frontend Moderno",
+        "duration": "6-8 semanas",
+        "topics": ["React", "UI/UX", "Responsive Design"],
+        "resources": ["React Docs", "Tailwind CSS", "Figma"],
+        "projects": ["Aplicación React", "Portfolio responsive"]
+      },
+      {
+        "name": "Backend y Bases de Datos",
+        "duration": "6-8 semanas",
+        "topics": ["Node.js", "Express", "MongoDB/SQL"],
+        "resources": ["Node.js Docs", "MongoDB University", "Express Guide"],
+        "projects": ["API REST", "Aplicación full-stack"]
+      },
+      {
+        "name": "Despliegue y Producción",
+        "duration": "2-4 semanas",
+        "topics": ["Git", "Deploy", "DevOps Básico"],
+        "resources": ["GitHub", "Vercel", "Railway"],
+        "projects": ["Deploy de aplicación", "CI/CD básico"]
+      }
     ],
-    "softSkills": ["Teamwork", "Communication", "Adaptability"],
-    "description": "Diseña e implementa interfaces accesibles y responsivas empleando frameworks modernos como React y Tailwind. Colabora estrechamente con equipos de diseño y producto.",
-    "source": "Dataset interno Geek Girls LatAm",
+    "careerOutcomes": ["Frontend Developer", "Full-Stack Developer", "Web Developer"],
+    "source": "Ruta de aprendizaje Geek Girls LatAm",
     "sourceUrl": "https://geekgirlslatam.org",
     "lastUpdated": "2024-12-15"
   },
   {
-    "id": "role-data-analyst",
-    "role": "Data Analyst",
-    "skills": [
-      "Python",
-      "SQL",
-      "Power BI",
-      "Data Visualization",
-      "Statistics"
+    "id": "path-data-analysis",
+    "title": "Análisis de Datos",
+    "area": "Datos",
+    "level": "intermediate",
+    "duration": "5-7 meses",
+    "description": "Convierte datos en insights accionables. Aprende a analizar, visualizar y comunicar hallazgos de datos.",
+    "prerequisites": ["Matemáticas básicas", "Conocimientos de Excel"],
+    "modules": [
+      {
+        "name": "Fundamentos de Datos",
+        "duration": "3-4 semanas",
+        "topics": ["Estadística básica", "Excel avanzado", "SQL"],
+        "resources": ["Khan Academy", "SQLZoo", "DataCamp"],
+        "projects": ["Análisis de dataset simple", "Consultas SQL"]
+      },
+      {
+        "name": "Python para Datos",
+        "duration": "5-6 semanas",
+        "topics": ["Python", "Pandas", "NumPy", "Jupyter"],
+        "resources": ["Python Docs", "Pandas Docs", "Google Colab"],
+        "projects": ["Limpieza de datos", "Análisis exploratorio"]
+      },
+      {
+        "name": "Visualización de Datos",
+        "duration": "4-5 semanas",
+        "topics": ["Tableau", "Power BI", "Matplotlib/Seaborn"],
+        "resources": ["Tableau Public", "Power BI Desktop", "Kaggle"],
+        "projects": ["Dashboard interactivo", "Reporte ejecutivo"]
+      },
+      {
+        "name": "Proyecto Final",
+        "duration": "3-4 semanas",
+        "topics": ["Storytelling con datos", "Presentación"],
+        "resources": ["Google Data Studio", "Canva"],
+        "projects": ["Proyecto completo de análisis", "Presentación de findings"]
+      }
     ],
-    "softSkills": ["Critical Thinking", "Communication", "Time Management"],
-    "description": "Analiza grandes volúmenes de datos para generar reportes y visualizaciones que soporten la toma de decisiones. Usa Python, SQL y herramientas BI.",
-    "source": "Observatorio Laboral MinTIC",
-    "sourceUrl": "https://www.mintic.gov.co/",
-    "lastUpdated": "2024-11-04"
+    "careerOutcomes": ["Data Analyst", "Business Intelligence Analyst", "Data Consultant"],
+    "source": "Ruta de aprendizaje Geek Girls LatAm",
+    "sourceUrl": "https://geekgirlslatam.org",
+    "lastUpdated": "2024-12-15"
   },
   {
-    "id": "role-ux-designer",
-    "role": "UX/UI Designer",
-    "skills": [
-      "Figma",
-      "User Research",
-      "Prototyping",
-      "Design Systems"
+    "id": "path-ux-design",
+    "title": "Diseño UX/UI",
+    "area": "Diseño",
+    "level": "beginner",
+    "duration": "4-6 meses",
+    "description": "Aprende a crear experiencias digitales centradas en las usuarias. Desde investigación hasta prototipado.",
+    "prerequisites": ["Ninguno - creatividad y empatía son clave"],
+    "modules": [
+      {
+        "name": "Fundamentos del Diseño",
+        "duration": "2-3 semanas",
+        "topics": ["Teoría del color", "Tipografía", "Composición"],
+        "resources": ["Coursera UX Design", "Canva Design School"],
+        "projects": ["Mood board", "Estudio de tipografías"]
+      },
+      {
+        "name": "Investigación de Usuarias",
+        "duration": "3-4 semanas",
+        "topics": ["User Research", "Personas", "Journey Maps"],
+        "resources": ["NNGroup", "UX Magazine", "Maze"],
+        "projects": ["Entrevista a usuarias", "Creación de personas"]
+      },
+      {
+        "name": "Herramientas de Diseño",
+        "duration": "4-5 semanas",
+        "topics": ["Figma", "Sketch", "Prototipado"],
+        "resources": ["Figma Tutorials", "Design+Code", "ProtoPie"],
+        "projects": ["Wireframes", "Prototipo interactivo"]
+      },
+      {
+        "name": "Pruebas y Iteración",
+        "duration": "3-4 semanas",
+        "topics": ["Usability Testing", "A/B Testing", "Design Systems"],
+        "resources": ["Optimal Workshop", "InVision", "Zeroheight"],
+        "projects": ["Test de usabilidad", "Design system"]
+      }
     ],
-    "softSkills": ["Empathy", "Communication", "Leadership"],
-    "description": "Investiga las necesidades de usuarias, diseña flujos y prototipos y valida soluciones mediante pruebas de usabilidad. Mantiene consistencia en sistemas de diseño.",
-    "source": "TechLadies Jobs Dataset",
-    "sourceUrl": "https://www.techladies.co/jobs",
-    "lastUpdated": "2024-10-21"
+    "careerOutcomes": ["UX Designer", "UI Designer", "Product Designer"],
+    "source": "Ruta de aprendizaje Geek Girls LatAm",
+    "sourceUrl": "https://geekgirlslatam.org",
+    "lastUpdated": "2024-12-15"
   },
   {
-    "id": "role-data-scientist",
-    "role": "Data Scientist",
-    "skills": [
-      "Python",
-      "Machine Learning",
-      "Statistics",
-      "Data Analysis",
-      "SQL"
+    "id": "path-data-science",
+    "title": "Ciencia de Datos",
+    "area": "Datos",
+    "level": "advanced",
+    "duration": "8-12 meses",
+    "description": "Domina el arte de extraer conocimiento de los datos. De análisis estadístico a machine learning.",
+    "prerequisites": ["Python básico", "Estadística", "Álgebra lineal"],
+    "modules": [
+      {
+        "name": "Estadística y Probabilidad",
+        "duration": "4-5 semanas",
+        "topics": ["Estadística descriptiva", "Probabilidad", "Inferencia"],
+        "resources": ["Khan Academy", "StatQuest", "Coursera Statistics"],
+        "projects": ["Análisis estadístico", "Test de hipótesis"]
+      },
+      {
+        "name": "Machine Learning",
+        "duration": "6-8 semanas",
+        "topics": ["Regresión", "Clasificación", "Clustering"],
+        "resources": ["Coursera ML", "Scikit-learn", "Kaggle"],
+        "projects": ["Modelo predictivo", "Sistema de recomendación"]
+      },
+      {
+        "name": "Deep Learning",
+        "duration": "5-6 semanas",
+        "topics": ["Redes neuronales", "TensorFlow/PyTorch", "Computer Vision"],
+        "resources": ["DeepLearning.AI", "Fast.ai", "PyTorch Docs"],
+        "projects": ["Clasificador de imágenes", "Chatbot básico"]
+      },
+      {
+        "name": "MLOps y Producción",
+        "duration": "4-5 semanas",
+        "topics": ["Model Deployment", "MLOps", "Ethics in AI"],
+        "resources": ["Made With ML", "Cortex", "Hugging Face"],
+        "projects": ["Deploy de modelo", "API de ML"]
+      }
     ],
-    "softSkills": ["Critical Thinking", "Problem Solving", "Communication"],
-    "description": "Desarrolla modelos predictivos y soluciones basadas en datos empleando librerías de machine learning y frameworks de despliegue en producción.",
-    "source": "Kaggle Open Jobs Dataset",
-    "sourceUrl": "https://www.kaggle.com/",
-    "lastUpdated": "2024-10-05"
+    "careerOutcomes": ["Data Scientist", "ML Engineer", "AI Researcher"],
+    "source": "Ruta de aprendizaje Geek Girls LatAm",
+    "sourceUrl": "https://geekgirlslatam.org",
+    "lastUpdated": "2024-12-15"
   },
   {
-    "id": "role-cybersecurity-analyst",
-    "role": "Cybersecurity Analyst",
-    "skills": [
-      "Networking",
-      "Security Audits",
-      "Incident Response",
-      "Python",
-      "Risk Assessment"
+    "id": "path-cybersecurity",
+    "title": "Ciberseguridad",
+    "area": "Seguridad",
+    "level": "intermediate",
+    "duration": "6-8 meses",
+    "description": "Protege sistemas y datos en el mundo digital. Aprende desde conceptos básicos hasta herramientas avanzadas.",
+    "prerequisites": ["Conocimientos básicos de redes", "Sistemas operativos"],
+    "modules": [
+      {
+        "name": "Fundamentos de Seguridad",
+        "duration": "3-4 semanas",
+        "topics": ["Conceptos básicos", "Amenazas comunes", "Criptografía"],
+        "resources": ["Cybrary", "OWASP", "NIST Framework"],
+        "projects": ["Análisis de vulnerabilidades", "Configuración segura"]
+      },
+      {
+        "name": "Redes y Sistemas",
+        "duration": "4-5 semanas",
+        "topics": ["Redes TCP/IP", "Firewalls", "Sistemas Linux"],
+        "resources": ["Network+", "Linux Academy", "TryHackMe"],
+        "projects": ["Configuración de firewall", "Análisis de red"]
+      },
+      {
+        "name": "Ethical Hacking",
+        "duration": "5-6 semanas",
+        "topics": ["Pentesting", "Vulnerability Assessment", "Metodologías"],
+        "resources": ["eJPT", "HackTheBox", "PortSwigger"],
+        "projects": ["Bug bounty básico", "CTF challenges"]
+      },
+      {
+        "name": "Respuesta a Incidentes",
+        "duration": "3-4 semanas",
+        "topics": ["Forensics", "Incident Response", "Compliance"],
+        "resources": ["SANS Institute", "CISA", "Blue Team Labs"],
+        "projects": ["Análisis forense", "Plan de respuesta"]
+      }
     ],
-    "softSkills": ["Attention to Detail", "Adaptability", "Communication"],
-    "description": "Monitorea, previene y responde a incidentes de seguridad. Implementa medidas de protección y realiza auditorías periódicas.",
-    "source": "Adzuna API",
-    "sourceUrl": "https://api.adzuna.com/",
-    "lastUpdated": "2024-11-30"
+    "careerOutcomes": ["Security Analyst", "Penetration Tester", "Security Consultant"],
+    "source": "Ruta de aprendizaje Geek Girls LatAm",
+    "sourceUrl": "https://geekgirlslatam.org",
+    "lastUpdated": "2024-12-15"
   },
   {
-    "id": "role-product-manager",
-    "role": "Product Manager",
-    "skills": [
-      "Product Strategy",
-      "Roadmapping",
-      "Stakeholder Management",
-      "User Research",
-      "Agile"
+    "id": "path-product-management",
+    "title": "Gestión de Producto",
+    "area": "Negocio",
+    "level": "intermediate",
+    "duration": "5-7 meses",
+    "description": "Aprende a liderar el desarrollo de productos digitales. Desde ideación hasta lanzamiento y crecimiento.",
+    "prerequisites": ["Experiencia laboral", "Interés en tecnología"],
+    "modules": [
+      {
+        "name": "Fundamentos del Producto",
+        "duration": "3-4 semanas",
+        "topics": ["Product Lifecycle", "User Research", "Market Analysis"],
+        "resources": ["Product School", "Reforge", "Mind the Product"],
+        "projects": ["Análisis de mercado", "User interviews"]
+      },
+      {
+        "name": "Estrategia y Roadmapping",
+        "duration": "4-5 semanas",
+        "topics": ["Product Strategy", "Roadmapping", "Prioritization"],
+        "resources": ["ProductPlan", "Aha!", "Roman Pichler"],
+        "projects": ["Product roadmap", "Priorización de features"]
+      },
+      {
+        "name": "Trabajo con Equipos",
+        "duration": "4-5 semanas",
+        "topics": ["Agile", "Stakeholder Management", "Cross-functional Teams"],
+        "resources": ["Scrum.org", "Agile Alliance", "Harvard Business Review"],
+        "projects": ["Sprint planning", "Stakeholder mapping"]
+      },
+      {
+        "name": "Métricas y Crecimiento",
+        "duration": "3-4 semanas",
+        "topics": ["Product Metrics", "A/B Testing", "Growth Hacking"],
+        "resources": ["Amplitude", "Mixpanel", "Reforge Growth"],
+        "projects": ["Dashboard de métricas", "Growth experiment"]
+      }
     ],
-    "softSkills": ["Leadership", "Communication", "Strategic Thinking"],
-    "description": "Define la visión del producto, coordina equipos multidisciplinarios y gestiona la entrega de funcionalidades alineadas con necesidades de usuarias.",
-    "source": "Remotive API",
-    "sourceUrl": "https://remotive.com/api/",
-    "lastUpdated": "2024-12-01"
+    "careerOutcomes": ["Product Manager", "Associate PM", "Product Owner"],
+    "source": "Ruta de aprendizaje Geek Girls LatAm",
+    "sourceUrl": "https://geekgirlslatam.org",
+    "lastUpdated": "2024-12-15"
   }
 ]
 

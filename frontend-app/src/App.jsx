@@ -8,7 +8,7 @@ import {
 
 function App() {
   const [profile, setProfile] = useState(null);
-  const [matches, setMatches] = useState([]);
+  const [recommendations, setRecommendations] = useState([]);
   const [journey, setJourney] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ function App() {
         persist: true
       });
       setProfile(data.profile);
-      setMatches(data.matches || []);
+      setRecommendations(data.recommendations || []);
       setJourney(data.journey || null);
       setMetadata(data.metadata || null);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -40,11 +40,11 @@ function App() {
   };
 
   const handleDownloadPdf = async () => {
-    if (!profile || !matches.length) return;
+    if (!profile || !recommendations.length) return;
 
     try {
       setPdfLoading(true);
-      const blob = await downloadMatchPdf({ profile, matches, journey });
+      const blob = await downloadMatchPdf({ profile, recommendations, journey });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
@@ -68,7 +68,7 @@ function App() {
 
   const handleReset = () => {
     setProfile(null);
-    setMatches([]);
+    setRecommendations([]);
     setJourney(null);
     setMetadata(null);
     setError("");
@@ -83,30 +83,30 @@ function App() {
             Geek Girls LatAm · Proyecto IA
           </p>
           <h1 className="mt-4 text-3xl font-bold leading-tight md:text-4xl">
-            Análisis de perfil y match laboral para egresadas STEM
+            Rutas Personalizadas de Aprendizaje STEM
           </h1>
           <p className="mt-4 max-w-3xl text-sm text-white/80 md:text-base">
-            Completa el formulario de orientación profesional, nuestra IA analizará tus
-            habilidades y aspiraciones, y te recomendará roles del mercado laboral
-            acordes a tu perfil. Obtén un reporte PDF personalizado para tu seguimiento.
+            Completa el formulario de orientación educativa, nuestra IA analizará tu perfil
+            y experiencia, y te recomendará rutas de aprendizaje STEM personalizadas para
+            tu crecimiento profesional. Obtén un plan de estudios completo con recursos.
           </p>
           <ul className="mt-6 grid gap-3 text-sm md:grid-cols-3">
             <li className="rounded-2xl bg-white/10 p-4">
-              <span className="font-semibold">Formulario integral</span>
+              <span className="font-semibold">Evaluación personalizada</span>
               <p className="text-white/75">
-                Información general, intereses, habilidades y aspiraciones en un solo lugar.
+                Análisis de tu nivel actual, intereses y experiencia previa.
               </p>
             </li>
             <li className="rounded-2xl bg-white/10 p-4">
-              <span className="font-semibold">Matching con IA</span>
+              <span className="font-semibold">Rutas de aprendizaje IA</span>
               <p className="text-white/75">
-                Embeddings y similitud con datasets y APIs externas del mercado laboral.
+                Recomendaciones inteligentes de caminos STEM basados en tu perfil.
               </p>
             </li>
             <li className="rounded-2xl bg-white/10 p-4">
-              <span className="font-semibold">Reporte descargable</span>
+              <span className="font-semibold">Plan educativo completo</span>
               <p className="text-white/75">
-                PDF con tus recomendaciones, habilidades destacadas y sugerencias.
+                Módulos secuenciales, recursos y cronograma de aprendizaje.
               </p>
             </li>
           </ul>
@@ -120,18 +120,18 @@ function App() {
 
         <ProfileForm onSubmit={handleFormSubmit} loading={loading} />
 
-        {profile && !matches.length && !loading ? (
+        {profile && !recommendations.length && !loading ? (
           <div className="rounded-2xl border border-amber-200 bg-amber-50 px-6 py-5 text-amber-700">
-            No encontramos coincidencias directas con el dataset actual. Revisa tus
-            intereses o habilidades clave y vuelve a intentarlo; también puedes añadir más
-            fuentes externas en el backend.
+            No encontramos rutas de aprendizaje que coincidan perfectamente con tu perfil.
+            Considera ajustar tus intereses o experiencia, o explora rutas de nivel básico
+            si estás empezando en STEM.
           </div>
         ) : null}
 
-        {matches.length ? (
+        {recommendations.length ? (
           <MatchResults
             profile={profile}
-            matches={matches}
+            recommendations={recommendations}
             journey={journey}
             onDownloadPdf={handleDownloadPdf}
             onReset={handleReset}
