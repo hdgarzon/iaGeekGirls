@@ -139,7 +139,7 @@ app.post("/api/pdf", (req, res) => {
       .text("Geek Girls LatAm", 50, 40);
     doc
       .fontSize(14)
-      .text("Análisis de Perfil y Match Laboral con IA", 50, 70);
+      .text("Rutas Personalizadas de Aprendizaje STEM", 50, 70);
 
     doc.moveDown(2);
     doc.fillColor("#000000").fontSize(18).text("Resumen del perfil", {
@@ -168,7 +168,7 @@ app.post("/api/pdf", (req, res) => {
     doc
       .fillColor(primaryColor)
       .fontSize(16)
-      .text("Top 3 matches sugeridos", { underline: true });
+      .text("Top 3 rutas de aprendizaje recomendadas", { underline: true });
     doc.moveDown(0.5);
 
     if (!matches.length) {
@@ -221,31 +221,74 @@ app.post("/api/pdf", (req, res) => {
     }
 
     doc.addPage();
-    doc.fillColor(primaryColor).fontSize(16).text("Recomendaciones IA", {
+    doc.fillColor(primaryColor).fontSize(16).text("Journey de Aprendizaje", {
       underline: true
     });
     doc.moveDown(0.5);
 
-    if (matches.length) {
-      matches.forEach((match) => {
-        if (match.rationale) {
-          doc
-            .fillColor("#000")
-            .fontSize(11)
-            .text(`${match.role}: ${match.rationale}`);
-          doc.moveDown(0.4);
+    // Journey Assessment
+    if (profile.journey?.currentAssessment) {
+      doc.fillColor("#000").fontSize(14).text("Evaluación Actual", { underline: true });
+      doc.moveDown(0.3);
+
+      if (profile.journey.currentAssessment.strengths?.length) {
+        doc.fillColor("#000").fontSize(11).text("💪 Fortalezas:");
+        profile.journey.currentAssessment.strengths.forEach(strength => {
+          doc.text(`• ${strength}`);
+        });
+        doc.moveDown(0.3);
+      }
+
+      if (profile.journey.currentAssessment.areasForImprovement?.length) {
+        doc.fillColor("#000").fontSize(11).text("🎯 Áreas de mejora:");
+        profile.journey.currentAssessment.areasForImprovement.forEach(area => {
+          doc.text(`• ${area}`);
+        });
+        doc.moveDown(0.3);
+      }
+
+      if (profile.journey.currentAssessment.learningLevel) {
+        doc.fillColor("#000").fontSize(11).text(`📚 Nivel de aprendizaje: ${profile.journey.currentAssessment.learningLevel}`);
+        doc.moveDown(0.5);
+      }
+    }
+
+    // Journey Phases
+    if (profile.journey?.phases) {
+      profile.journey.phases.forEach((phase, index) => {
+        doc.fillColor(primaryColor).fontSize(12).text(`${index + 1}. ${phase.name}`, { underline: true });
+        doc.moveDown(0.2);
+
+        if (phase.goals?.length) {
+          doc.fillColor("#000").fontSize(10).text("🎯 Objetivos:");
+          phase.goals.forEach(goal => {
+            doc.text(`• ${goal}`);
+          });
+          doc.moveDown(0.2);
         }
-        if (match.missingSkills?.length) {
-          doc
-            .fillColor("#444")
-            .fontSize(10)
-            .text(
-              `Sugerencias de mejora: ${match.missingSkills.join(", ")}`
-            );
-          doc.moveDown(0.4);
+
+        if (phase.actions?.length) {
+          doc.fillColor("#000").fontSize(10).text("🚀 Acciones:");
+          phase.actions.forEach(action => {
+            doc.text(`• ${action}`);
+          });
+          doc.moveDown(0.2);
+        }
+
+        if (phase.resources?.length) {
+          doc.fillColor("#000").fontSize(10).text("📚 Recursos:");
+          phase.resources.forEach(resource => {
+            doc.text(`• ${resource}`);
+          });
+          doc.moveDown(0.3);
         }
       });
     }
+
+    doc.moveDown(0.5);
+    doc.fillColor("#666").fontSize(10).text(
+      "💡 Este journey es una guía flexible. Adáptalo a tu ritmo y circunstancias personales. El aprendizaje STEM es un viaje continuo."
+    );
 
     // Add Journey section if available
     if (journey) {
@@ -326,7 +369,7 @@ app.post("/api/pdf", (req, res) => {
       .fillColor("#000")
       .fontSize(10)
       .text(
-        `Reporte generado el ${new Date().toLocaleString()} con datos de Geek Girls LatAm y fuentes del mercado laboral.`,
+        `Plan de estudios generado el ${new Date().toLocaleString()} con rutas de aprendizaje STEM personalizadas de Geek Girls LatAm.`,
         { align: "left" }
       );
 
