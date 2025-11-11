@@ -1,0 +1,383 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-12-15",
+    "description": "Fuentes confiables para enriquecer rutas de aprendizaje STEM"
+  },
+  "careerResources": {
+    "web-development": {
+      "title": "Desarrollo Web Full-Stack",
+      "salaryData": {
+        "sources": [
+          {
+            "name": "Glassdoor LATAM",
+            "url": "https://www.glassdoor.com.mx/Salaries/index.htm",
+            "searchTerms": ["Full Stack Developer", "Colombia", "México", "Chile"],
+            "lastChecked": "2024-12-15"
+          },
+          {
+            "name": "Indeed Analytics",
+            "url": "https://www.indeed.com/career/salaries",
+            "searchTerms": ["Full Stack Developer"],
+            "lastChecked": "2024-12-15"
+          },
+          {
+            "name": "LinkedIn Salary Insights",
+            "url": "https://www.linkedin.com/salary",
+            "searchTerms": ["Full Stack Developer", "Colombia"],
+            "lastChecked": "2024-12-15"
+          }
+        ],
+        "currentStats": {
+          "latamRange": "$1,200 - $3,500 USD/mes",
+          "growth": "+25% anual",
+          "source": "Stack Overflow Survey 2024"
+        }
+      },
+      "educationalResources": [
+        {
+          "name": "MDN Web Docs",
+          "url": "https://developer.mozilla.org/es/docs/Web",
+          "type": "documentation",
+          "free": true,
+          "level": "beginner"
+        },
+        {
+          "name": "freeCodeCamp",
+          "url": "https://www.freecodecamp.org/espanol/",
+          "type": "platform",
+          "free": true,
+          "certificates": true
+        },
+        {
+          "name": "The Odin Project",
+          "url": "https://www.theodinproject.com/",
+          "type": "curriculum",
+          "free": true,
+          "level": "intermediate"
+        }
+      ],
+      "marketData": {
+        "demandGrowth": "+25%",
+        "topSkills": ["React", "Node.js", "TypeScript", "AWS"],
+        "remoteFriendly": true,
+        "entryLevel": "$1,200 USD/mes",
+        "seniorLevel": "$3,500 USD/mes"
+      }
+    },
+    "data-analysis": {
+      "title": "Análisis de Datos",
+      "salaryData": {
+        "sources": [
+          {
+            "name": "Levels.fyi",
+            "url": "https://www.levels.fyi/",
+            "searchTerms": ["Data Analyst"],
+            "lastChecked": "2024-12-15"
+          },
+          {
+            "name": "Kaggle Surveys",
+            "url": "https://www.kaggle.com/kaggle-survey-2024",
+            "searchTerms": ["Data Analyst", "LATAM"],
+            "lastChecked": "2024-12-15"
+          }
+        ],
+        "currentStats": {
+          "latamRange": "$1,500 - $4,000 USD/mes",
+          "growth": "+35% anual",
+          "source": "World Economic Forum 2024"
+        }
+      },
+      "educationalResources": [
+        {
+          "name": "Google Data Analytics Certificate",
+          "url": "https://grow.google/certificates/",
+          "type": "certification",
+          "cost": "$49/mes",
+          "duration": "6 meses",
+          "certificates": true
+        },
+        {
+          "name": "DataCamp",
+          "url": "https://www.datacamp.com/",
+          "type": "platform",
+          "cost": "$25/mes",
+          "interactive": true
+        },
+        {
+          "name": "Coursera Data Analytics",
+          "url": "https://www.coursera.org/professional-certificates/google-data-analytics",
+          "type": "specialization",
+          "cost": "$49/mes",
+          "certificates": true
+        }
+      ],
+      "marketData": {
+        "demandGrowth": "+35%",
+        "topSkills": ["Python", "SQL", "Tableau", "Power BI"],
+        "remoteFriendly": true,
+        "entryLevel": "$1,500 USD/mes",
+        "seniorLevel": "$4,000 USD/mes"
+      }
+    },
+    "ux-design": {
+      "title": "Diseño UX/UI",
+      "salaryData": {
+        "sources": [
+          {
+            "name": "UXPA Salary Survey",
+            "url": "https://uxpa.org/resources/salary-survey/",
+            "searchTerms": ["UX Designer", "LATAM"],
+            "lastChecked": "2024-12-15"
+          },
+          {
+            "name": "Behance Jobs",
+            "url": "https://www.behance.net/joblist",
+            "searchTerms": ["UX Designer"],
+            "lastChecked": "2024-12-15"
+          }
+        ],
+        "currentStats": {
+          "latamRange": "$1,000 - $3,000 USD/mes",
+          "growth": "+18% anual",
+          "source": "UXPA 2024 Survey"
+        }
+      },
+      "educationalResources": [
+        {
+          "name": "Google UX Design Certificate",
+          "url": "https://grow.google/certificates/ux-design/",
+          "type": "certification",
+          "cost": "$49/mes",
+          "duration": "6 meses",
+          "certificates": true
+        },
+        {
+          "name": "Interaction Design Foundation",
+          "url": "https://www.interaction-design.org/",
+          "type": "platform",
+          "cost": "$9.99/mes",
+          "courses": true
+        },
+        {
+          "name": "Coursera UX Specialization",
+          "url": "https://www.coursera.org/specializations/google-ux-design",
+          "type": "specialization",
+          "cost": "$49/mes",
+          "certificates": true
+        }
+      ],
+      "marketData": {
+        "demandGrowth": "+18%",
+        "topSkills": ["Figma", "User Research", "Design Systems"],
+        "remoteFriendly": true,
+        "entryLevel": "$1,000 USD/mes",
+        "seniorLevel": "$3,000 USD/mes"
+      }
+    },
+    "data-science": {
+      "title": "Ciencia de Datos",
+      "salaryData": {
+        "sources": [
+          {
+            "name": "Kaggle ML & DS Survey",
+            "url": "https://www.kaggle.com/kaggle-survey-2024",
+            "searchTerms": ["Data Scientist", "Machine Learning"],
+            "lastChecked": "2024-12-15"
+          },
+          {
+            "name": "Towards Data Science",
+            "url": "https://towardsdatascience.com/",
+            "searchTerms": ["Data Science salaries"],
+            "lastChecked": "2024-12-15"
+          }
+        ],
+        "currentStats": {
+          "latamRange": "$2,500 - $6,000 USD/mes",
+          "growth": "+40% anual",
+          "source": "LinkedIn 2024 Report"
+        }
+      },
+      "educationalResources": [
+        {
+          "name": "Andrew Ng's Machine Learning",
+          "url": "https://www.coursera.org/learn/machine-learning",
+          "type": "course",
+          "cost": "$49/mes",
+          "certificates": true
+        },
+        {
+          "name": "Fast.ai",
+          "url": "https://www.fast.ai/",
+          "type": "platform",
+          "free": true,
+          "level": "intermediate"
+        },
+        {
+          "name": "DeepLearning.AI",
+          "url": "https://www.deeplearning.ai/",
+          "type": "specialization",
+          "cost": "$49/mes",
+          "certificates": true
+        }
+      ],
+      "marketData": {
+        "demandGrowth": "+40%",
+        "topSkills": ["Python", "TensorFlow", "PyTorch", "MLOps"],
+        "remoteFriendly": true,
+        "entryLevel": "$2,500 USD/mes",
+        "seniorLevel": "$6,000 USD/mes"
+      }
+    },
+    "cybersecurity": {
+      "title": "Ciberseguridad",
+      "salaryData": {
+        "sources": [
+          {
+            "name": "ISC² Cybersecurity Workforce Study",
+            "url": "https://www.isc2.org/research",
+            "searchTerms": ["Cybersecurity", "LATAM"],
+            "lastChecked": "2024-12-15"
+          },
+          {
+            "name": "CyberSeek",
+            "url": "https://www.cyberseek.org/",
+            "searchTerms": ["Security Analyst"],
+            "lastChecked": "2024-12-15"
+          }
+        ],
+        "currentStats": {
+          "latamRange": "$1,800 - $5,000 USD/mes",
+          "growth": "+32% anual",
+          "source": "ISC² 2024"
+        }
+      },
+      "educationalResources": [
+        {
+          "name": "Cybrary",
+          "url": "https://www.cybrary.it/",
+          "type": "platform",
+          "free": true,
+          "certificates": true
+        },
+        {
+          "name": "TryHackMe",
+          "url": "https://tryhackme.com/",
+          "type": "platform",
+          "free": true,
+          "gamified": true
+        },
+        {
+          "name": "HackTheBox",
+          "url": "https://www.hackthebox.com/",
+          "type": "platform",
+          "cost": "$10/mes",
+          "practical": true
+        }
+      ],
+      "marketData": {
+        "demandGrowth": "+32%",
+        "topSkills": ["Ethical Hacking", "Cloud Security", "SIEM"],
+        "remoteFriendly": true,
+        "entryLevel": "$1,800 USD/mes",
+        "seniorLevel": "$5,000 USD/mes"
+      }
+    },
+    "product-management": {
+      "title": "Gestión de Producto",
+      "salaryData": {
+        "sources": [
+          {
+            "name": "Product School",
+            "url": "https://www.productschool.com/blog/",
+            "searchTerms": ["Product Manager salary", "LATAM"],
+            "lastChecked": "2024-12-15"
+          },
+          {
+            "name": "Reforge Reports",
+            "url": "https://www.reforge.com/research",
+            "searchTerms": ["Product Management"],
+            "lastChecked": "2024-12-15"
+          }
+        ],
+        "currentStats": {
+          "latamRange": "$2,000 - $4,500 USD/mes",
+          "growth": "+20% anual",
+          "source": "Product School 2024"
+        }
+      },
+      "educationalResources": [
+        {
+          "name": "Product School",
+          "url": "https://www.productschool.com/",
+          "type": "certification",
+          "cost": "$1,000+",
+          "certificates": true
+        },
+        {
+          "name": "Reforge Programs",
+          "url": "https://www.reforge.com/",
+          "type": "program",
+          "cost": "$500+",
+          "intensive": true
+        },
+        {
+          "name": "Mind the Product",
+          "url": "https://www.mindtheproduct.com/",
+          "type": "community",
+          "free": true,
+          "articles": true
+        }
+      ],
+      "marketData": {
+        "demandGrowth": "+20%",
+        "topSkills": ["SQL", "Analytics", "Stakeholder Management"],
+        "remoteFriendly": true,
+        "entryLevel": "$2,000 USD/mes",
+        "seniorLevel": "$4,500 USD/mes"
+      }
+    }
+  },
+  "generalResources": {
+    "monitoring": [
+      {
+        "name": "Stack Overflow Developer Survey",
+        "url": "https://survey.stackoverflow.co/2024/",
+        "frequency": "anual",
+        "focus": "tech trends"
+      },
+      {
+        "name": "GitHub Octoverse",
+        "url": "https://octoverse.github.com/",
+        "frequency": "anual",
+        "focus": "developer insights"
+      },
+      {
+        "name": "State of JS/CSS/HTML",
+        "url": "https://stateofjs.com/",
+        "frequency": "anual",
+        "focus": "web technologies"
+      }
+    ],
+    "newsletters": [
+      {
+        "name": "Data Elixir",
+        "url": "https://dataelixir.com/",
+        "focus": "data science",
+        "frequency": "semanal"
+      },
+      {
+        "name": "UX Magazine",
+        "url": "https://uxmag.com/",
+        "focus": "UX design",
+        "frequency": "mensual"
+      },
+      {
+        "name": "CSS-Tricks",
+        "url": "https://css-tricks.com/",
+        "focus": "web development",
+        "frequency": "semanal"
+      }
+    ]
+  }
+}

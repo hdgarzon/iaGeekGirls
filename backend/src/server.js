@@ -10,6 +10,13 @@ const {
 } = require("./services/profileRepository");
 const { recommendLearningPaths, generateLearningJourney } = require("./services/matchService");
 const { fetchExternalJobs } = require("./services/externalJobsService");
+const {
+  getCareerResources,
+  getAllCareerResources,
+  getEducationalResources,
+  getSalaryData,
+  getMarketData
+} = require("./services/resourcesService");
 
 const PORT = process.env.PORT || 4000;
 const allowedOrigins = [
@@ -41,6 +48,70 @@ app.use(express.json({ limit: "2mb" }));
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
+// Resources endpoints
+app.get("/api/resources", (req, res) => {
+  try {
+    const resources = getAllCareerResources();
+    res.json({ resources });
+  } catch (error) {
+    console.error("Error fetching resources:", error);
+    res.status(500).json({ message: "Error al obtener recursos" });
+  }
+});
+
+app.get("/api/resources/:careerId", (req, res) => {
+  try {
+    const { careerId } = req.params;
+    const resources = getCareerResources(careerId);
+    if (!resources) {
+      return res.status(404).json({ message: "Recursos no encontrados para esta carrera" });
+    }
+    res.json({ resources });
+  } catch (error) {
+    console.error("Error fetching career resources:", error);
+    res.status(500).json({ message: "Error al obtener recursos de carrera" });
+  }
+});
+
+app.get("/api/resources/:careerId/education", (req, res) => {
+  try {
+    const { careerId } = req.params;
+    const resources = getEducationalResources(careerId);
+    res.json({ educationalResources: resources });
+  } catch (error) {
+    console.error("Error fetching educational resources:", error);
+    res.status(500).json({ message: "Error al obtener recursos educativos" });
+  }
+});
+
+app.get("/api/resources/:careerId/salary", (req, res) => {
+  try {
+    const { careerId } = req.params;
+    const salaryData = getSalaryData(careerId);
+    if (!salaryData) {
+      return res.status(404).json({ message: "Datos salariales no encontrados" });
+    }
+    res.json({ salaryData });
+  } catch (error) {
+    console.error("Error fetching salary data:", error);
+    res.status(500).json({ message: "Error al obtener datos salariales" });
+  }
+});
+
+app.get("/api/resources/:careerId/market", (req, res) => {
+  try {
+    const { careerId } = req.params;
+    const marketData = getMarketData(careerId);
+    if (!marketData) {
+      return res.status(404).json({ message: "Datos de mercado no encontrados" });
+    }
+    res.json({ marketData });
+  } catch (error) {
+    console.error("Error fetching market data:", error);
+    res.status(500).json({ message: "Error al obtener datos de mercado" });
+  }
 });
 
 app.get("/api/profiles", (req, res) => {
