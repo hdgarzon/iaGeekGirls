@@ -1,0 +1,33 @@
+[
+  {
+    "id": "remotive-frontend-latam",
+    "role": "Frontend Developer (LatAm)",
+    "skills": ["React", "TypeScript", "CSS", "REST APIs"],
+    "softSkills": ["Communication", "Remote Collaboration"],
+    "description": "Startup enfocada en salud digital busca Frontend Developer remoto en Latinoamérica con experiencia en React y trabajo colaborativo.",
+    "source": "Remotive API",
+    "sourceUrl": "https://remotive.com/api/remote-jobs",
+    "lastUpdated": "2025-01-05"
+  },
+  {
+    "id": "adzuna-data-analyst-co",
+    "role": "Data Analyst - Bogotá",
+    "skills": ["SQL", "Python", "Tableau", "Statistics"],
+    "softSkills": ["Critical Thinking", "Communication"],
+    "description": "Empresa fintech en Bogotá requiere analista de datos para construir dashboards y modelos predictivos enfocados en inclusión financiera.",
+    "source": "Adzuna API",
+    "sourceUrl": "https://api.adzuna.com/v1/api/jobs",
+    "lastUpdated": "2025-01-10"
+  },
+  {
+    "id": "githubjobs-ux-mentor",
+    "role": "UX Researcher & Mentor",
+    "skills": ["Figma", "User Research", "Workshops", "Design Thinking"],
+    "softSkills": ["Leadership", "Empathy", "Mentorship"],
+    "description": "ONG internacional busca mentora UX para acompañar a equipos de innovación social y diseñar experiencias inclusivas.",
+    "source": "Tech NGOs Listing",
+    "sourceUrl": "https://example.org/jobs",
+    "lastUpdated": "2025-01-02"
+  }
+]
+
