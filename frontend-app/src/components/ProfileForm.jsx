@@ -398,7 +398,7 @@ function ProfileForm({ onSubmit, loading }) {
       <section className={sectionClass}>
         <header className="space-y-2">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-secondary">
-            Sección 3
+            Sección 4
           </p>
           <h2 className="text-2xl font-bold text-brand-primary">
             Habilidades técnicas y blandas
@@ -452,13 +452,13 @@ function ProfileForm({ onSubmit, loading }) {
       <section className={sectionClass}>
         <header className="space-y-2">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-secondary">
-            Sección 4
+            Sección 3
           </p>
           <h2 className="text-2xl font-bold text-brand-primary">
-            Experiencia y aspiraciones
+            Experiencia actual
           </h2>
           <p className="text-sm text-slate-600">
-            Conoce mejor tus aspiraciones laborales y expectativas de crecimiento.
+            Cuéntanos sobre tu experiencia previa para personalizar mejor tus recomendaciones.
           </p>
         </header>
         <div className="space-y-6">
@@ -511,6 +511,22 @@ function ProfileForm({ onSubmit, loading }) {
               ) : null}
             </div>
           ) : null}
+        </div>
+      </section>
+
+      <section className={sectionClass}>
+        <header className="space-y-2">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-secondary">
+            Sección 5
+          </p>
+          <h2 className="text-2xl font-bold text-brand-primary">
+            Aspiraciones profesionales
+          </h2>
+          <p className="text-sm text-slate-600">
+            Cuéntanos sobre tus objetivos profesionales para contextualizar mejor tus recomendaciones.
+          </p>
+        </header>
+        <div className="space-y-6">
           <div className="grid gap-6 md:grid-cols-2">
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium text-slate-700">
@@ -578,13 +594,13 @@ function ProfileForm({ onSubmit, loading }) {
       <section className={sectionClass}>
         <header className="space-y-2">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-secondary">
-            Sección 5
+            Sección 6
           </p>
           <h2 className="text-2xl font-bold text-brand-primary">
-            Preferencias de aprendizaje y desarrollo
+            Preferencias de aprendizaje y expectativas
           </h2>
           <p className="text-sm text-slate-600">
-            Esta información nos ayudará a sugerirte rutas de aprendizaje personalizadas.
+            Cuéntanos cómo prefieres aprender y qué esperas obtener de este proceso.
           </p>
         </header>
         <div className="space-y-8">
@@ -601,7 +617,7 @@ function ProfileForm({ onSubmit, loading }) {
             name: "learningTopics",
             label: "¿Qué temas te gustaría fortalecer?",
             options: learningTopicsOptions,
-            helperText: "Selecciona los temas prioritarios.",
+            helperText: "Selecciona los temas prioritarios para tu desarrollo.",
             required: true,
             otherFieldName: "learningTopicsOther",
             otherPlaceholder: "Añade otro tema de interés"
@@ -609,7 +625,7 @@ function ProfileForm({ onSubmit, loading }) {
           <div className="grid gap-6 md:grid-cols-2">
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium text-slate-700">
-                ¿Te interesa recibir acompañamiento o mentoría en empleabilidad?
+                ¿Te interesa recibir mentoría en empleabilidad?
               </label>
               <select
                 {...register("mentorshipInterest", { required: requiredMessage })}
@@ -628,50 +644,9 @@ function ProfileForm({ onSubmit, loading }) {
                 </p>
               ) : null}
             </div>
-          </div>
-          {renderCheckboxGroup({
-            name: "tools",
-            label: "¿Qué herramientas o lenguajes usas con más frecuencia?",
-            options: languageToolOptions,
-            helperText: "Elige las herramientas que utilizas habitualmente.",
-            required: true,
-            otherFieldName: "toolsOther",
-            otherPlaceholder: "Añade otra herramienta o lenguaje"
-          })}
-        </div>
-      </section>
-
-      <section className={sectionClass}>
-        <header className="space-y-2">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-secondary">
-            Sección 6
-          </p>
-          <h2 className="text-2xl font-bold text-brand-primary">
-            Proyección y propósito
-          </h2>
-          <p className="text-sm text-slate-600">
-            Conecta tu propósito personal con el impacto que quieres generar.
-          </p>
-        </header>
-        <div className="space-y-6">
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-slate-700">
-              ¿Cómo te gustaría que tu trabajo impacte en tu comunidad u otras mujeres?
-            </label>
-            <textarea
-              rows={4}
-              {...register("impactStatement", { required: requiredMessage })}
-              className="rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary/30"
-              placeholder="Comparte tu visión de impacto"
-            />
-            {errors.impactStatement ? (
-              <p className="text-sm text-rose-600">{errors.impactStatement.message}</p>
-            ) : null}
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium text-slate-700">
-                ¿Qué tan segura te sientes de tu perfil profesional actual?
+                ¿Qué tan segura te sientes de tu perfil actual?
               </label>
               <select
                 {...register("confidenceLevel", { required: requiredMessage })}
@@ -690,27 +665,50 @@ function ProfileForm({ onSubmit, loading }) {
                 </p>
               ) : null}
             </div>
-            <div className="space-y-3">
-              {renderCheckboxGroup({
-                name: "expectations",
-                label: "¿Qué esperas obtener del análisis de perfil y match?",
-                options: expectationOptions,
-                helperText: "Selecciona tus principales expectativas.",
-                required: true,
-                otherFieldName: "expectationOther",
-                otherPlaceholder: "Comparte otra expectativa"
-              })}
-            </div>
+          </div>
+          {renderCheckboxGroup({
+            name: "tools",
+            label: "¿Qué herramientas o lenguajes usas con más frecuencia?",
+            options: languageToolOptions,
+            helperText: "Elige las herramientas que utilizas habitualmente.",
+            required: true,
+            otherFieldName: "toolsOther",
+            otherPlaceholder: "Añade otra herramienta o lenguaje"
+          })}
+          <div className="space-y-3">
+            {renderCheckboxGroup({
+              name: "expectations",
+              label: "¿Qué esperas obtener de este análisis?",
+              options: expectationOptions,
+              helperText: "Selecciona tus principales expectativas.",
+              required: true,
+              otherFieldName: "expectationOther",
+              otherPlaceholder: "Comparte otra expectativa"
+            })}
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-medium text-slate-700">
+              ¿Cómo te gustaría que tu carrera impacte en tu comunidad?
+            </label>
+            <textarea
+              rows={3}
+              {...register("impactStatement", { required: requiredMessage })}
+              className="rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary/30"
+              placeholder="Comparte tu visión de impacto social"
+            />
+            {errors.impactStatement ? (
+              <p className="text-sm text-rose-600">{errors.impactStatement.message}</p>
+            ) : null}
           </div>
         </div>
       </section>
 
       <footer className="flex flex-col items-start justify-between gap-4 rounded-3xl bg-gradient-to-r from-brand-primary to-brand-secondary px-8 py-6 text-white md:flex-row md:items-center">
         <div>
-          <h3 className="text-xl font-semibold">¿Lista para explorar tus matches?</h3>
+          <h3 className="text-xl font-semibold">¿Lista para descubrir tu ruta de aprendizaje?</h3>
           <p className="text-sm text-white/80">
-            Al enviar tus respuestas, generaremos recomendaciones personalizadas y un
-            reporte descargable.
+            Al enviar tus respuestas, generaremos rutas de aprendizaje personalizadas y un
+            plan de estudios completo.
           </p>
         </div>
         <button
@@ -718,7 +716,7 @@ function ProfileForm({ onSubmit, loading }) {
           disabled={loading}
           className="flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-primary shadow-lg transition hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {loading ? "Analizando perfil..." : "Generar match con IA"}
+          {loading ? "Analizando perfil..." : "Generar rutas de aprendizaje"}
         </button>
       </footer>
     </form>
