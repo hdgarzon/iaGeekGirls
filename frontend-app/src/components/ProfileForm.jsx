@@ -703,6 +703,147 @@ function ProfileForm({ onSubmit, loading }) {
         </div>
       </section>
 
+      <section className={sectionClass}>
+        <header className="space-y-2">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-secondary">
+            Sección 7
+          </p>
+          <h2 className="text-2xl font-bold text-brand-primary">
+            Oportunidades laborales
+          </h2>
+          <p className="text-sm text-slate-600">
+            Al completar estas rutas de aprendizaje, podrás acceder a posiciones como estas.
+          </p>
+        </header>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 p-6 border border-blue-200">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">💻</span>
+              </div>
+              <div>
+                <h3 className="font-semibold text-blue-900">Desarrollo Web</h3>
+                <p className="text-xs text-blue-700">Frontend/Backend</p>
+              </div>
+            </div>
+            <p className="text-sm text-blue-800 mb-2">
+              Desarrolladora Full-Stack, Ingeniera Frontend, Arquitecta Web
+            </p>
+            <div className="flex flex-wrap gap-1">
+              <span className="px-2 py-1 bg-blue-200 text-blue-800 text-xs rounded-full">React</span>
+              <span className="px-2 py-1 bg-blue-200 text-blue-800 text-xs rounded-full">Node.js</span>
+              <span className="px-2 py-1 bg-blue-200 text-blue-800 text-xs rounded-full">$2k-5k</span>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-gradient-to-br from-green-50 to-green-100 p-6 border border-green-200">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">📊</span>
+              </div>
+              <div>
+                <h3 className="font-semibold text-green-900">Análisis de Datos</h3>
+                <p className="text-xs text-green-700">Data Science</p>
+              </div>
+            </div>
+            <p className="text-sm text-green-800 mb-2">
+              Analista de Datos, Científica de Datos, BI Developer
+            </p>
+            <div className="flex flex-wrap gap-1">
+              <span className="px-2 py-1 bg-green-200 text-green-800 text-xs rounded-full">Python</span>
+              <span className="px-2 py-1 bg-green-200 text-green-800 text-xs rounded-full">SQL</span>
+              <span className="px-2 py-1 bg-green-200 text-green-800 text-xs rounded-full">$2.5k-6k</span>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 p-6 border border-purple-200">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">🎨</span>
+              </div>
+              <div>
+                <h3 className="font-semibold text-purple-900">Diseño UX/UI</h3>
+                <p className="text-xs text-purple-700">Product Design</p>
+              </div>
+            </div>
+            <p className="text-sm text-purple-800 mb-2">
+              Diseñadora UX, Product Designer, UI Developer
+            </p>
+            <div className="flex flex-wrap gap-1">
+              <span className="px-2 py-1 bg-purple-200 text-purple-800 text-xs rounded-full">Figma</span>
+              <span className="px-2 py-1 bg-purple-200 text-purple-800 text-xs rounded-full">Design</span>
+              <span className="px-2 py-1 bg-purple-200 text-purple-800 text-xs rounded-full">$2k-4.5k</span>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-gradient-to-br from-red-50 to-red-100 p-6 border border-red-200">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">🔒</span>
+              </div>
+              <div>
+                <h3 className="font-semibold text-red-900">Ciberseguridad</h3>
+                <p className="text-xs text-red-700">Security</p>
+              </div>
+            </div>
+            <p className="text-sm text-red-800 mb-2">
+              Analista de Seguridad, Ethical Hacker, Security Engineer
+            </p>
+            <div className="flex flex-wrap gap-1">
+              <span className="px-2 py-1 bg-red-200 text-red-800 text-xs rounded-full">Security</span>
+              <span className="px-2 py-1 bg-red-200 text-red-800 text-xs rounded-full">Python</span>
+              <span className="px-2 py-1 bg-red-200 text-red-800 text-xs rounded-full">$3k-7k</span>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 border border-yellow-200">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">🚀</span>
+              </div>
+              <div>
+                <h3 className="font-semibold text-yellow-900">Ciencia de Datos</h3>
+                <p className="text-xs text-yellow-700">AI/ML</p>
+              </div>
+            </div>
+            <p className="text-sm text-yellow-800 mb-2">
+              Científica de Datos, ML Engineer, AI Researcher
+            </p>
+            <div className="flex flex-wrap gap-1">
+              <span className="px-2 py-1 bg-yellow-200 text-yellow-800 text-xs rounded-full">Python</span>
+              <span className="px-2 py-1 bg-yellow-200 text-yellow-800 text-xs rounded-full">ML</span>
+              <span className="px-2 py-1 bg-yellow-200 text-yellow-800 text-xs rounded-full">$3.5k-8k</span>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 border border-indigo-200">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">📈</span>
+              </div>
+              <div>
+                <h3 className="font-semibold text-indigo-900">Product Management</h3>
+                <p className="text-xs text-indigo-700">Product</p>
+              </div>
+            </div>
+            <p className="text-sm text-indigo-800 mb-2">
+              Product Manager, Associate PM, Product Owner
+            </p>
+            <div className="flex flex-wrap gap-1">
+              <span className="px-2 py-1 bg-indigo-200 text-indigo-800 text-xs rounded-full">Strategy</span>
+              <span className="px-2 py-1 bg-indigo-200 text-indigo-800 text-xs rounded-full">Agile</span>
+              <span className="px-2 py-1 bg-indigo-200 text-indigo-800 text-xs rounded-full">$3k-6k</span>
+            </div>
+          </div>
+        </div>
+        <div className="mt-6 rounded-2xl bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10 p-4 border border-brand-primary/20">
+          <p className="text-sm text-brand-primary text-center">
+            <strong>💡 Recuerda:</strong> Estas son solo algunas de las oportunidades disponibles.
+            Cada ruta de aprendizaje te abre puertas a múltiples carreras STEM con alto impacto y crecimiento profesional.
+          </p>
+        </div>
+      </section>
+
       <footer className="flex flex-col items-start justify-between gap-4 rounded-3xl bg-gradient-to-r from-brand-primary to-brand-secondary px-8 py-6 text-white md:flex-row md:items-center">
         <div>
           <h3 className="text-xl font-semibold">¿Lista para descubrir tu ruta de aprendizaje?</h3>
