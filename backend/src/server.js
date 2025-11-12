@@ -366,6 +366,44 @@ app.post("/api/pdf", (req, res) => {
       );
     }
 
+    // Add Career Opportunities section
+    if (matches.some(match => match.careerOutcomes?.length)) {
+      doc.addPage();
+      doc.fillColor(primaryColor).fontSize(16).text("Oportunidades Laborales", {
+        underline: true
+      });
+      doc.moveDown(0.5);
+
+      doc.fillColor(primaryColor).fontSize(14).text("Carreras que puedes alcanzar", {
+        underline: true
+      });
+      doc.moveDown(0.5);
+
+      // Collect all unique career outcomes from recommended paths
+      const allCareerOutcomes = matches.flatMap(match => match.careerOutcomes || []);
+      const uniqueCareers = [...new Set(allCareerOutcomes)];
+
+      if (uniqueCareers.length > 0) {
+        uniqueCareers.forEach((career, idx) => {
+          doc
+            .fillColor(primaryColor)
+            .fontSize(12)
+            .text(`${idx + 1}. ${career}`);
+          doc.moveDown(0.3);
+        });
+
+        doc.moveDown(0.5);
+        doc.fillColor("#666").fontSize(10).text(
+          "Estas son las carreras profesionales que puedes alcanzar al completar las rutas de aprendizaje recomendadas. Cada ruta te prepara para roles específicos en el mercado laboral STEM.",
+          { align: "left" }
+        );
+      } else {
+        doc.fillColor("#000").fontSize(12).text(
+          "No hay carreras específicas definidas para las rutas recomendadas."
+        );
+      }
+    }
+
     doc.moveDown(1);
     doc
       .fillColor("#000")
