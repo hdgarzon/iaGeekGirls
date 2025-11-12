@@ -254,7 +254,7 @@ app.post("/api/pdf", (req, res) => {
         doc
           .fillColor(primaryColor)
           .fontSize(14)
-          .text(`${idx + 1}. ${match.role}`);
+          .text(`${idx + 1}. ${match.title || match.role}`);
         doc.moveDown(0.2);
         doc
           .fillColor("#000")
@@ -263,14 +263,15 @@ app.post("/api/pdf", (req, res) => {
         if (match.matchedSkills?.length) {
           doc.text(`Habilidades destacadas: ${match.matchedSkills.join(", ")}`);
         }
-        if (match.softSkillOverlap?.length) {
-          doc.text(
-            `Habilidades blandas alineadas: ${match.softSkillOverlap.join(", ")}`
-          );
-        }
         if (match.description) {
           doc.moveDown(0.3);
           doc.fontSize(10).fillColor("#333").text(match.description);
+        }
+        if (match.level) {
+          doc.fontSize(9).fillColor("#666").text(`Nivel: ${match.level}`);
+        }
+        if (match.duration) {
+          doc.text(`Duración: ${match.duration}`);
         }
         if (match.source) {
           doc
