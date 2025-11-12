@@ -16,11 +16,11 @@ export async function generateMatchRequest({ profileId, profile, persist }) {
   return data;
 }
 
-export async function downloadMatchPdf({ profile, matches, journey }) {
+export async function downloadMatchPdf({ profile, recommendations, journey }) {
   const payload = {
     profileId: profile?.id,
     profile,
-    matches,
+    matches: recommendations,
     journey
   };
 
