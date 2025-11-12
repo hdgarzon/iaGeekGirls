@@ -254,7 +254,7 @@ app.post("/api/pdf", (req, res) => {
         doc
           .fillColor(primaryColor)
           .fontSize(14)
-          .text(`${idx + 1}. ${match.title || match.role}`);
+          .text(`${idx + 1}. ${match.title || 'Sin título'}`);
         doc.moveDown(0.2);
         doc
           .fillColor("#000")
